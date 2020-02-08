@@ -1,0 +1,11 @@
+@import './scss/base/reset';
+@import './scss/utilities/variables';
+@import './scss/base/typography';
+
+.App {
+  text-align: center;
+
+  .para {
+    color: $test;
+  }
+}
