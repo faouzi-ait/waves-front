@@ -2,9 +2,15 @@
 @import "./scss/utilities/functions";
 @import "./scss/utilities/mixins";
 
+// BASE STYLES
 @import "./scss/base/reset";
 @import "./scss/base/typography";
 
+// LAYOUT SECTIONS
 @import "./scss/layout/home";
 @import "./scss/layout/header";
 @import "./scss/layout/footer";
+
+// COMPONENTS SECTIONS
+@import "./scss/pages/login";
+@import "./scss/pages/registration";

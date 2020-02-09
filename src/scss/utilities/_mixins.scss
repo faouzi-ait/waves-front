@@ -1,0 +1,50 @@
+@mixin button_link {
+   display: inline-block;
+   margin-top: 1.5rem;
+   text-decoration: none;
+   text-transform: uppercase;
+   letter-spacing: 0.5px;
+   background: rgb(206, 206, 206);
+   padding: 0.5rem 0.5rem;
+   color: #000;
+   transition: all 300ms linear;
+   cursor: pointer;
+}
+
+@mixin hover {
+   background: rgb(85, 85, 85);
+   color: $white;
+}
+
+@mixin submit_button {
+   width: 90%;
+   height: 2rem;
+   padding-left: 1rem;
+   outline: none;
+   font-size: 0.9rem;
+   margin-top: 1.5rem;
+}
+
+@mixin border_error {
+   border: 1px solid red;
+}
+
+@mixin form_error {
+   letter-spacing: 1px;
+   margin-top: 0.5rem;
+   color: red;
+}
+
+@mixin form_container {
+   padding: 3rem 1.5rem;
+   width: 67%;
+   margin: 5rem auto;
+   min-height: 5rem;
+   border: 1px solid #ccc;
+   border-top: 3px solid rgb(112, 112, 112);
+}
+
+@mixin grid_columns {
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+}

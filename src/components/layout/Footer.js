@@ -1,5 +1,5 @@
 import React from "react";
-import FooterContact from "./sections/Footer_contact";
+import FooterContact from "../sections/Footer_contact";
 
 const Footer = _ => {
   return (

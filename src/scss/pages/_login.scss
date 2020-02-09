@@ -1,0 +1,49 @@
+.login {
+  font-family: $text_format;
+  min-height: 70vh;
+
+  &__container {
+    @include grid_columns;
+    @include form_container
+  }
+
+  &__title {
+    text-transform: uppercase;
+    opacity: 0.75;
+    font-weight: bold;
+  }
+
+  &__new {
+    width: 85%;
+    margin-top: 1rem;
+    opacity: 0.5;
+    line-height: 1.35rem;
+  }
+
+  &__button {
+    @include button_link;
+    outline: none;
+
+    &:hover {
+      @include hover;
+    }
+  }
+}
+
+.login__bold {
+  letter-spacing: 1px;
+  font-weight: 600;
+  font-family: $text_format;
+}
+
+input {
+  @include submit_button;
+}
+
+.error {
+  @include border_error;
+}
+
+.login__error {
+  @include form_error;
+}

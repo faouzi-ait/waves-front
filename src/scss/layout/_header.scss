@@ -41,6 +41,16 @@
          padding-right: 1.5rem;
       }
    }
+
+   a {
+      text-decoration: none;
+      color: $white;
+      transition: all 300ms linear;
+
+      &:hover {
+         color: #ccc;
+      }
+   }
 }
 
 .header__container {
