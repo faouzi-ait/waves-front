@@ -1,11 +1,10 @@
-@import './scss/base/reset';
-@import './scss/utilities/variables';
-@import './scss/base/typography';
+@import "./scss/utilities/variables";
+@import "./scss/utilities/functions";
+@import "./scss/utilities/mixins";
 
-.App {
-  text-align: center;
+@import "./scss/base/reset";
+@import "./scss/base/typography";
 
-  .para {
-    color: $test;
-  }
-}
+@import "./scss/layout/home";
+@import "./scss/layout/header";
+@import "./scss/layout/footer";

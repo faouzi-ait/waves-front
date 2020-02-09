@@ -1,0 +1,49 @@
+.header {
+   color: $white;
+   background: rgb(119, 119, 119);
+
+   &__logo {
+      font-size: 3rem;
+      padding: 1rem 0;
+      letter-spacing: 1px;
+      font-family: $main_title;
+      text-align: center;
+      text-transform: uppercase;
+   }
+
+   &__links {
+      font-family: $text_format;
+      text-transform: uppercase;
+      border-left: $border;
+      border-right: $border;
+   }
+
+   &__top,
+   &__bottom {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+   }
+
+   &__top {
+      height: 2.5rem;
+      border-bottom: $border;
+
+      &--content {
+         padding-right: 1.5rem;
+      }
+   }
+
+   &__bottom {
+      min-height: 50%;
+
+      &--content {
+         padding-right: 1.5rem;
+      }
+   }
+}
+
+.header__container {
+   display: grid;
+   grid-template-columns: 25% 1fr 15%;
+}
