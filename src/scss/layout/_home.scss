@@ -1,3 +1,57 @@
 .home {
    min-height: $main_height;
 }
+
+.line {
+   position: relative;
+   top: 60%;
+   left: 10%;
+   width: 25%;
+   color: #fff;
+
+   &__top {
+      top: 10%;
+      width: 50%;
+   }
+
+   &>* {
+      margin-bottom: .5rem;
+   }
+
+   &__one {
+      width: 45%;
+      font-family: "Oswald", sans-serif !important;
+      font-size: 2.15rem;
+      font-weight: bold;
+      text-align: center;
+      text-transform: uppercase;
+      padding: 1rem;
+      background: rgba(228, 228, 228, 0.5);
+   }
+
+   &__two {
+      width: 100%;
+      font-family: "Oswald", sans-serif !important;
+      font-size: 2.15rem;
+      text-transform: uppercase;
+      padding: 1rem;
+      background: rgba(228, 228, 228, 0.5);
+
+      &--fix {
+         width: 65%;
+      }
+   }
+}
+
+.link__btn {
+   font-size: .75rem;
+   margin-top: 0 !important;
+}
+
+.last__featured {
+   text-align: center;
+
+   &>* {
+      margin: 0 auto;
+   }
+}
