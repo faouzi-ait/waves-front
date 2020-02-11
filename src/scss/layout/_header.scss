@@ -39,7 +39,15 @@
 
       &--content {
          padding-right: 1.5rem;
+
+         a:first-child {
+            margin-right: .5rem;
+         }
       }
+   }
+
+   .login__myacc {
+      margin-right: .5rem;
    }
 
    a {
@@ -58,7 +66,7 @@
    grid-template-columns: 25% 1fr 15%;
 }
 
-.login__username{
+.login__username {
    display: inline-block;
    margin-right: .5rem;
 }

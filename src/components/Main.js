@@ -7,6 +7,7 @@ import Footer from "./layout/Footer";
 import LoginComponent from "./pages/Login";
 import RegisterComponent from "./pages/Registration";
 import Dashboard from "./pages/dashboard/Dashboard";
+import Cart from "./pages/Cart";
 
 import { UserLogin } from "../context/LoginProvider";
 
@@ -30,6 +31,7 @@ const Main = _ => {
           path="/register"
           component={!login.isLoggedin.get ? RegisterComponent : Home}
         />
+        <Route exact path="/cart" component={Cart} />
         <Route
           exact
           path="/user/dashboard"
