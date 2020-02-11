@@ -28,12 +28,23 @@
       @include hover;
     }
   }
-}
 
-.login__bold {
-  letter-spacing: 1px;
-  font-weight: 600;
-  font-family: $text_format;
+  &__bold {
+    letter-spacing: 1px;
+    font-weight: 600;
+    font-family: $text_format;
+  }
+
+  &__error {
+    @include form_error;
+  }
+
+  &__error--msg {
+    font-family: $text_format;
+    margin-top: 1.5rem;
+    padding-left: .75rem;
+    color: red;
+  }
 }
 
 input {
@@ -44,6 +55,16 @@ input {
   @include border_error;
 }
 
-.login__error {
-  @include form_error;
+.spinner-rotate {
+  animation: rotation 2s infinite linear;
+}
+
+@keyframes rotation {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+
+  to {
+    -webkit-transform: rotate(359deg);
+  }
 }
