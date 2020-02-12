@@ -1,5 +1,86 @@
 .home {
    min-height: $main_height;
+   font-family: $text_format;
+
+   &__best {
+      min-height: 60vh;
+
+      &--container {
+         width: 85%;
+         margin: 10vh auto;
+      }
+
+      &--items {
+         display: flex;
+         flex-direction: row;
+
+         &>div {
+            margin-right: 1rem;
+         }
+      }
+   }
+
+   &__title {
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+      text-transform: uppercase;
+      text-align: center;
+      opacity: .75;
+   }
+}
+
+.best__item--card {
+   display: flex;
+   flex-wrap: wrap;
+   flex-direction: column;
+   align-items: center;
+
+   &>* {
+      margin-bottom: .5rem;
+   }
+}
+
+.best__images {
+   border: 1px solid rgba(204, 204, 204, 0.164);
+   height: 250px;
+   width: 90%;
+}
+
+.best__name {
+   color: blue;
+}
+
+.best__price {
+   opacity: .5;
+}
+
+.best__buttons {
+   display: grid;
+   grid-template-columns: 90% 10%;
+   width: 90%;
+   opacity: .5;
+   border-top: 1px solid rgba(204, 204, 204, 0.25);
+
+   &--left,
+   &--right {
+      font-size: .8rem;
+      padding: .25rem;
+      text-align: center;
+      border: 1px solid rgba(204, 204, 204, 0.25);
+      background: rgba(204, 204, 204, 0.096);
+      margin-top: .5rem;
+      cursor: pointer;
+   }
+
+   &--left {
+      text-transform: uppercase;
+   }
+
+   &--right {
+      align-self: center;
+      justify-self: center;
+      margin-left: .35rem;
+   }
 }
 
 .line {
@@ -54,4 +135,47 @@
    &>* {
       margin: 0 auto;
    }
+}
+
+/* LOADER STYLES */
+.loader {
+   border: 16px solid #f3f3f3;
+   border-radius: 50%;
+   border-top: 16px solid #ccc;
+   width: 120px;
+   height: 120px;
+   -webkit-animation: spin 2s linear infinite;
+   animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+   0% {
+      -webkit-transform: rotate(0deg);
+   }
+
+   100% {
+      -webkit-transform: rotate(360deg);
+   }
+}
+
+@keyframes spin {
+   0% {
+      transform: rotate(0deg);
+   }
+
+   100% {
+      transform: rotate(360deg);
+   }
+}
+
+.loader--position {
+   display: grid;
+   grid-template-columns: 1fr;
+   justify-items: center;
+   width: 100%;
+}
+
+.loading__title {
+   font-size: 1.5rem;
+   margin-top: 2rem;
 }

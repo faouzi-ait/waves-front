@@ -165,3 +165,19 @@ export const SecondSlideShow = _ => {
     </div>
   );
 };
+
+export const bestSelling = guitards => {
+  return guitards.list.get.filter(item => item.sold > 1);
+};
+
+/* LOADER SECTION */
+export const Loader = _ => {
+  return (
+    <div className="home__best">
+      <div className="home__best--container loader--position">
+        <div class="loader"></div>
+        <div class="loading__title">Loading the guitard list</div>
+      </div>
+    </div>
+  );
+}
