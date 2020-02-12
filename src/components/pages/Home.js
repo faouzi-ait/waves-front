@@ -47,7 +47,10 @@ const Home = _ => {
               <div
                 style={{
                   backgroundImage: `url(${item.url})`,
-                  height: `${window.innerHeight}px`
+                  height: `${window.innerHeight}px`,
+                  backgroundPosition: "center",
+                  backgroundRepeat: "no-repeat",
+                  backgroundSize: "cover"
                 }}
                 key={i}
               >
@@ -65,25 +68,30 @@ const Home = _ => {
             );
           })}
         </Fade>
-        <div
-          style={{
-            backgroundImage: `url(${featuredHomeLast.url})`,
-            height: `50vh`
-          }}
-          className="last__featured"
-        >
-          <div className="line line__top">
-            <div className="line__one">{featuredHomeLast.lineOne}</div>
-            <div className="line__two line__two--fix">
-              {featuredHomeLast.lineTwo}
-            </div>
-            <a
-              href={featuredHomeLast.linkTo}
-              className="login__button login__bold link__btn"
-            >
-              {featuredHomeLast.linkTitle}
-            </a>
+      </div>
+    );
+  };
+
+  const SecondSlideShow = _ => {
+    return (
+      <div
+        style={{
+          backgroundImage: `url(${featuredHomeLast.url})`,
+          height: `50vh`
+        }}
+        className="last__featured"
+      >
+        <div className="line line__top">
+          <div className="line__one">{featuredHomeLast.lineOne}</div>
+          <div className="line__two line__two--fix">
+            {featuredHomeLast.lineTwo}
           </div>
+          <a
+            href={featuredHomeLast.linkTo}
+            className="login__button login__bold link__btn"
+          >
+            {featuredHomeLast.linkTitle}
+          </a>
         </div>
       </div>
     );
@@ -92,6 +100,7 @@ const Home = _ => {
   return (
     <div className="home home__container">
       <Slideshow />
+      <SecondSlideShow />
     </div>
   );
 };

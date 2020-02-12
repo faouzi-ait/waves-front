@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { Switch, Route } from "react-router-dom";
+import { GuitardsProvider } from "../context/GuitadsProvider";
 
 import Home from "./pages/Home";
 import Header from "./layout/Header";
@@ -18,27 +19,29 @@ const Main = _ => {
 
   return (
     <>
-      <Header />
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route
-          exact
-          path="/login"
-          component={!login.isLoggedin.get ? LoginComponent : Home}
-        />
-        <Route
-          exact
-          path="/register"
-          component={!login.isLoggedin.get ? RegisterComponent : Home}
-        />
-        <Route exact path="/cart" component={Cart} />
-        <Route
-          exact
-          path="/user/dashboard"
-          component={login.isLoggedin.get ? Dashboard : Home}
-        />
-      </Switch>
-      <Footer />
+      <GuitardsProvider>
+        <Header />
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route
+            exact
+            path="/login"
+            component={!login.isLoggedin.get ? LoginComponent : Home}
+          />
+          <Route
+            exact
+            path="/register"
+            component={!login.isLoggedin.get ? RegisterComponent : Home}
+          />
+          <Route exact path="/cart" component={Cart} />
+          <Route
+            exact
+            path="/user/dashboard"
+            component={login.isLoggedin.get ? Dashboard : Home}
+          />
+        </Switch>
+        <Footer />
+      </GuitardsProvider>
     </>
   );
 };
