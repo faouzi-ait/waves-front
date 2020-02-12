@@ -43,6 +43,9 @@ const Header = _ => {
           <div className="header__bottom--content">
             <a href="/">home</a>
             <a href="/">guitards</a>
+            <a href="/contact">
+              contact
+            </a>
           </div>
         </div>
       </div>

@@ -9,6 +9,7 @@ import LoginComponent from "./pages/Login";
 import RegisterComponent from "./pages/Registration";
 import Dashboard from "./pages/dashboard/Dashboard";
 import Cart from "./pages/Cart";
+import Contact from "./pages/Contact";
 
 import { UserLogin } from "../context/LoginProvider";
 
@@ -23,6 +24,7 @@ const Main = _ => {
         <Header />
         <Switch>
           <Route exact path="/" component={Home} />
+          <Route exact path="/contact" component={Contact} />
           <Route
             exact
             path="/login"

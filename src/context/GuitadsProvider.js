@@ -1,19 +1,43 @@
 import React, { useState, useEffect, createContext } from "react";
+import { getGuitardList } from "../api/GuitardCall";
 
 export const Guitards = createContext();
 
 export const GuitardsProvider = props => {
+  const [guitardList, setGuitardList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [guitardsList, setGuitardsList] = useState([]);
+  const [error, setError] = useState("");
+  const [initialUrl, setInitialUrl] = useState(
+    `${process.env.REACT_APP_BASE_URL}${process.env.REACT_APP_GUITARD_LIST}`
+  );
 
-  useEffect(_ => {
-    // AXIOS GUITARDS HERE
-  }, []);
+  useEffect(
+    _ => {
+      setIsLoading(true);
+      const getGuitards = async url => {
+        const request = await getGuitardList(url);
+        request.data
+          ? setGuitardList(request.data.guitards)
+          : setError("There was a problem fetching the guitards.");
+      };
+      getGuitards(initialUrl);
+      setIsLoading(false);
+    },
+    [initialUrl]
+  );
 
   const guitards = {
-    guitards: { get: guitardsList, set: setGuitardsList },
-    isLoading: { get: isLoading, set: setIsLoading }
+    list: { get: guitardList, set: setGuitardList },
+    url: { get: initialUrl, set: setInitialUrl },
+    loading: { get: isLoading, set: setIsLoading },
+    error: { get: error, set: setError }
   };
 
-  return <Guitards.Provider value={[guitards]}>{props.children}</Guitards.Provider>;
+  const actions = {};
+
+  return (
+    <Guitards.Provider value={[guitards, actions]}>
+      {props.children}
+    </Guitards.Provider>
+  );
 };
