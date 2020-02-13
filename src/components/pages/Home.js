@@ -5,13 +5,11 @@ import {
   bestSelling,
   Loader
 } from "../../utils/utilities";
-import { Guitards } from "../../context/GuitadsProvider";
-import HomeProductsDisplay from "../sections/HomeProductsDisplay";
+import HomeProductsDisplay from "../sections/ProductsDisplay";
+import { Guitards } from "../../context/GuitardsProvider";
 
 const Home = _ => {
   const [guitards] = useContext(Guitards);
-
-  console.log(guitards.loading.get);
 
   return (
     <div className="home home__container">

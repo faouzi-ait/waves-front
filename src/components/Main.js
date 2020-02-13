@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Switch, Route } from "react-router-dom";
-import { GuitardsProvider } from "../context/GuitadsProvider";
+import { GuitardsProvider } from "../context/GuitardsProvider";
 
 import Home from "./pages/Home";
 import Header from "./layout/Header";

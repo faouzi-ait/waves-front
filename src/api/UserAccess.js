@@ -10,3 +10,7 @@ export const loginUser = (url, body) => {
 export const registerUser = (url, body) => {
   return axios.post(url, body).then(result => result);
 };
+
+export const sendMail = (url, body) => {
+  //return axios.post(url, body).then(result => result);
+};

@@ -98,6 +98,7 @@ const Registration = _ => {
           <div className="login__title registration__account">
             account information
           </div>
+          
           <div className="login__registration registration__field">
             <div>
               <input
