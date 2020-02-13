@@ -13,7 +13,7 @@ export const GuitardsProvider = props => {
     `${process.env.REACT_APP_BASE_URL}${process.env.REACT_APP_GUITARD_LIST}`
   );
   const [byArrivalUrl, setByArrivalUrl] = useState(
-    `${process.env.REACT_APP_BASE_URL}${process.env.REACT_APP_GUITARD_LIST}?sort=createdAt&limit=4`
+    `${process.env.REACT_APP_BASE_URL}${process.env.REACT_APP_GUITARD_LIST}?sort=-createdAt&limit=4`
   );
 
   const getGuitards = async url => {
