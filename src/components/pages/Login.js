@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { useHistory } from "react-router-dom";
 import { loginUser } from "../../api/UserAccess";
 import { UserLogin } from "../../context/LoginProvider";
-import { resetError } from "../../utils/utilities";
+import { resetMessage } from "../../utils/utilities";
 import SubmitBtn from "../sections/SubmitBtn";
 
 const LoginComponent = () => {
@@ -31,7 +31,7 @@ const LoginComponent = () => {
             "There was an error while trying to log you in, please try again later"
           );
         }
-        resetError(setError);
+        resetMessage(setError);
         setIsLoading(false);
       });
   };

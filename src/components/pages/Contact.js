@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { resetError } from "../../utils/utilities";
+import { resetMessage } from "../../utils/utilities";
 import { sendMail } from "../../api/UserAccess";
 import SubmitBtn from "../sections/SubmitBtn";
 
@@ -9,30 +8,33 @@ const Contact = _ => {
   const { register, handleSubmit, errors } = useForm();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
-  let history = useHistory();
+  const [confirmation, setConfirmation] = useState("");
 
-  const onSubmit = async data => {
+  const onSubmit = async (data, e) => {
     setIsLoading(true);
-    console.log(data)
-    setIsLoading(false);
-   //  await sendMail("https://waves-faouzi.herokuapp.com/api/v1/send", {
-   //    name: data.name,
-   //    surname: data.lastname,
-   //    email: data.email,
-   //    password: data.password
-   //  })
-   //    .then(_ => {
-   //      history.push("/login");
-   //    })
-   //    .catch(error => {
-   //      if (String(error.response.status).startsWith("4")) {
-   //        setError(error.response.data.message);
-   //      } else if (String(error.response.status).startsWith("5")) {
-   //        setError("The message could not be sent, please try again later");
-   //      }
-   //      resetError(setError);
-   //      setIsLoading(false);
-   //    });
+    await sendMail(
+      "https://waves-faouzi.herokuapp.com/api/v1/contact/message",
+      {
+        name: data.name,
+        lastname: data.lastname,
+        email: data.email,
+        note: data.note
+      }
+    )
+      .then(result => {
+        setConfirmation(result.data.message);
+        setIsLoading(false);
+        resetMessage(setConfirmation);
+        e.target.reset();
+      })
+      .catch(error => {
+        if (String(error.response.status).startsWith("4")) {
+          setError(error.response.data.message);
+        } else if (String(error.response.status).startsWith("5")) {
+          setError("The message could not be sent, please try again later");
+        }
+        resetMessage(setError);
+      });
   };
 
   return (
@@ -121,6 +123,9 @@ const Contact = _ => {
             label_2="send message"
           />
           {error && <span className="login__error--msg">{error}</span>}
+          {confirmation && (
+            <span className="login__confirmation--msg">{confirmation}</span>
+          )}
         </div>
       </form>
     </div>

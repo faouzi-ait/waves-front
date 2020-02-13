@@ -45,6 +45,13 @@
     padding-left: .75rem;
     color: red;
   }
+  
+  &__confirmation--msg {
+    font-family: $text_format;
+    margin-top: 1.5rem;
+    padding-left: .75rem;
+    color: green;
+  }
 }
 
 input {

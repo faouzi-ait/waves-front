@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { resetError } from "../../utils/utilities";
+import { resetMessage } from "../../utils/utilities";
 import { registerUser } from "../../api/UserAccess";
 import SubmitBtn from "../sections/SubmitBtn";
 
@@ -30,7 +30,7 @@ const Registration = _ => {
             "There was an error while trying to log you in, please try again later"
           );
         }
-        resetError(setError);
+        resetMessage(setError);
         setIsLoading(false);
       });
   };
@@ -98,7 +98,7 @@ const Registration = _ => {
           <div className="login__title registration__account">
             account information
           </div>
-          
+
           <div className="login__registration registration__field">
             <div>
               <input

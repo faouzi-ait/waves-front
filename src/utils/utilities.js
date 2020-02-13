@@ -4,7 +4,7 @@ import { Fade } from "react-slideshow-image";
 import MainAccount from "../components/pages/dashboard/MainAccount";
 import MyAccount from "../components/pages/dashboard/account/MyAccount";
 
-export const resetError = setError => {
+export const resetMessage = setError => {
   setTimeout(() => {
     setError("");
   }, 4000);

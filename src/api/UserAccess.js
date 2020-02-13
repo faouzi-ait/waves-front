@@ -12,5 +12,5 @@ export const registerUser = (url, body) => {
 };
 
 export const sendMail = (url, body) => {
-  //return axios.post(url, body).then(result => result);
+  return axios.post(url, body).then(result => result);
 };
