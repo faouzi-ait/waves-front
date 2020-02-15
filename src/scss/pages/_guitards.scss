@@ -1,0 +1,32 @@
+.guitards__home {
+   min-height: $main_height;
+   font-family: $text_format;
+
+   &--title {
+      border-bottom: 1px solid #ccc;
+
+      .title {
+         width: 90%;
+         margin: 0 auto;
+         padding: 1rem 0;
+         text-transform: uppercase;
+      }
+   }
+
+   &--container {
+      display: grid;
+      grid-template-columns: 30% 70%;
+      margin: 1rem auto;
+   }
+}
+
+.guitard__left {}
+
+.guitard__right {}
+
+.filter__box {
+   display: grid;
+   grid-template-columns: 90% 10%;
+   padding-left: 4.4rem;
+   align-items: center;
+}

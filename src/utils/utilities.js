@@ -175,9 +175,18 @@ export const Loader = _ => {
   return (
     <div className="home__best">
       <div className="home__best--container loader--position">
-        <div class="loader"></div>
-        <div class="loading__title">Loading the guitard list</div>
+        <div className="loader"></div>
+        <div className="loading__title">Loading the guitard list</div>
       </div>
     </div>
   );
-}
+};
+
+/* GUITARDS PAGE */
+export const GuitardsTitle = ({ title }) => {
+  return (
+    <div className="guitards__home--title">
+      <div className="title">{title}</div>
+    </div>
+  );
+};

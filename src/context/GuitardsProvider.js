@@ -6,46 +6,42 @@ export const Guitards = createContext();
 export const GuitardsProvider = props => {
   const [guitardList, setGuitardList] = useState([]);
   const [guitardListByArrival, setGuitardListByArrival] = useState([]);
+  const [guitardBrands, setGuitardBrands] = useState([]);
+  const [guitardWoods, setGuitardWoods] = useState([]);
+
   const [isLoading, setIsLoading] = useState(false);
   const [isBestSellingLoading, setIsBestSellingLoading] = useState(false);
   const [error, setError] = useState("");
-  const [initialUrl, setInitialUrl] = useState(
-    `${process.env.REACT_APP_BASE_URL}${process.env.REACT_APP_GUITARD_LIST}`
-  );
-  const [byArrivalUrl, setByArrivalUrl] = useState(
-    `${process.env.REACT_APP_BASE_URL}${process.env.REACT_APP_GUITARD_LIST}?sort=-createdAt&limit=4`
-  );
 
-  const getGuitards = async url => {
+  const getGuitard = async (url, setList) => {
     setIsLoading(true);
     const request = await getGuitardList(url);
     request.data
-      ? setGuitardList(request.data.guitards)
+      ? setList(request.data.records)
       : setError("There was a problem fetching the guitards.");
     setIsLoading(false);
   };
 
-  const getGuitardsByArrival = async url => {
-    setIsBestSellingLoading(true);
-    const request = await getGuitardList(url);
-    request.data
-      ? setGuitardListByArrival(request.data.guitards)
-      : setError("There was a problem fetching the guitards.");
-    setIsBestSellingLoading(false);
-  };
+  const initialUrl = `${process.env.REACT_APP_BASE_URL}${process.env.REACT_APP_GUITARD_LIST}`;
 
   useEffect(
     _ => {
-      getGuitards(initialUrl);
-      getGuitardsByArrival(byArrivalUrl);
+      getGuitard(initialUrl, setGuitardList);
+      getGuitard(
+        `${initialUrl}?sort=-createdAt&limit=4`,
+        setGuitardListByArrival
+      );
+      getGuitard(`${process.env.REACT_APP_GUITARD_BRANDS}`, setGuitardBrands);
+      getGuitard(`${process.env.REACT_APP_GUITARD_WOODS}`, setGuitardWoods);
     },
-    [initialUrl, byArrivalUrl]
+    [initialUrl]
   );
 
   const guitards = {
-    list: { get: guitardList, set: setGuitardList },
-    byArrival: { get: guitardListByArrival, set: setByArrivalUrl },
-    url: { get: initialUrl, set: setInitialUrl },
+    list: { get: guitardList },
+    byArrival: { get: guitardListByArrival },
+    byBrands: { get: guitardBrands },
+    byWoods: { get: guitardWoods },
     loading: { get: isLoading, set: setIsLoading },
     loadingBestSelling: {
       get: isBestSellingLoading,
