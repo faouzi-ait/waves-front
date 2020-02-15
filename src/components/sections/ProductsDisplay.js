@@ -1,13 +1,13 @@
 import React from "react";
 
-const HomeProductsDisplay = ({ list, title }) => {
+const HomeProductsDisplay = ({ list, title, classfix, classFix_2 }) => {
   return (
     <div className="home__best">
       <div className="home__best--container">
         <div className="home__title">{title}</div>
-        <div className="home__best--items">
+        <div className={`home__best--items ${classFix_2}`}>
           {list.map((item, i) => (
-            <div className="best__item--card" key={i}>
+            <div className={`best__item--card ${classfix}`} key={i}>
               <img
                 src="/images/image_not.png"
                 className="best__images"

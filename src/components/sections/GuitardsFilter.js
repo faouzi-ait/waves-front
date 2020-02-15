@@ -32,16 +32,12 @@ const BrandsFilter = ({ list, label, getName }) => {
         )}
       </ListItem>
       <Collapse in={isOpen}>
-        {list ? (
-          list.map((item, i) => (
-            <div className="filter__box" key={i}>
-              <span>{item.name}</span>
-              <Checkbox value={item.name} onClick={e => getName(e)} />
-            </div>
-          ))
-        ) : (
-          <Loader />
-        )}
+        {list.map((item, i) => (
+          <div className="filter__box" key={i}>
+            <span>{item.name}</span>
+            <Checkbox value={item.name} onClick={e => getName(e)} />
+          </div>
+        ))}
       </Collapse>
     </List>
   );

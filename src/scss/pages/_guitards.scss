@@ -22,7 +22,10 @@
 
 .guitard__left {}
 
-.guitard__right {}
+.guitard__right {
+   margin-top: -3rem;
+   margin-left: -3rem;
+}
 
 .filter__box {
    display: grid;

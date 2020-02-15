@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import { GuitardsTitle } from "../../utils/utilities";
 import GuitardsFilter from "../sections/GuitardsFilter";
+import HomeProductsDisplay from "../sections/ProductsDisplay";
 
 import { Guitards } from "../../context/GuitardsProvider";
 
@@ -30,8 +31,7 @@ const Guitard = _ => {
     getNameItem(e, setWoodList, woodList);
   };
 
-  console.log(brandList);
-  console.log(woodList);
+  console.log(guitards.list.get);
 
   return (
     <div className="guitards__home">
@@ -49,7 +49,13 @@ const Guitard = _ => {
             getName={getWoods}
           />
         </div>
-        <div className="guitard__right"></div>
+        <div className="guitard__right">
+          <HomeProductsDisplay
+            list={guitards.list.get}
+            classfix="best__item--card--fix"
+            classFix_2="home__best--items--fix"
+          />
+        </div>
       </div>
     </div>
   );

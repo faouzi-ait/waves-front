@@ -34,15 +34,24 @@
    flex-wrap: wrap;
    flex-direction: column;
    align-items: center;
+   margin-bottom: 1rem;
 
    &>* {
       margin-bottom: .5rem;
    }
 }
 
+.best__item--card--fix {
+   width: 25%;
+}
+
+.home__best--items--fix {
+   flex-wrap: wrap !important;
+}
+
 .best__images {
    border: 1px solid rgba(204, 204, 204, 0.164);
-   height: 250px;
+   height: 200px;
    width: 90%;
 }
 
