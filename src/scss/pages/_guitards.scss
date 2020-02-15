@@ -33,3 +33,16 @@
    padding-left: 4.4rem;
    align-items: center;
 }
+
+.no__items {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   width: 100%;
+   height: 75vh;
+
+   &--message {
+      letter-spacing: 1px;
+      font-size: 2rem;
+   }
+}

@@ -3,6 +3,9 @@ import { useTabState, usePanelState } from "@bumaga/tabs";
 import { Fade } from "react-slideshow-image";
 import MainAccount from "../components/pages/dashboard/MainAccount";
 import MyAccount from "../components/pages/dashboard/account/MyAccount";
+import AddProduct from "../components/pages/dashboard/AddProducts";
+import AddCategory from "../components/pages/dashboard/AddCategories";
+import ManageCategories from "../components/pages/dashboard/ManageCategories";
 
 export const resetMessage = setError => {
   setTimeout(() => {
@@ -11,13 +14,13 @@ export const resetMessage = setError => {
 };
 
 /* USER DASHBOARD COMPONENT */
-export const Tab = ({ children }) => {
+const Tab = ({ children }) => {
   const { onClick } = useTabState();
 
   return <p onClick={onClick}>{children}</p>;
 };
 
-export const Panel = ({ children }) => {
+const Panel = ({ children }) => {
   const isActive = usePanelState();
 
   return isActive ? <span>{children}</span> : null;
@@ -47,9 +50,15 @@ export const dashboardAdminMenu = _ => {
       <div className="login__title title--menu admin--menu">Admin</div>
       <div className="dashboard__main--details">
         <ul className="dashboard__menu--list">
-          <li>Site Info</li>
-          <li>Add Products</li>
-          <li>Manage Categories</li>
+          <li>
+            <Tab>Add Products</Tab>
+          </li>
+          <li>
+            <Tab>Add Categories</Tab>
+          </li>
+          <li>
+            <Tab>Manage Categories</Tab>
+          </li>
         </ul>
       </div>
     </>
@@ -64,6 +73,15 @@ export const dashboardPanel = _ => {
       </Panel>
       <Panel>
         <MyAccount />
+      </Panel>
+      <Panel>
+        <AddProduct />
+      </Panel>
+      <Panel>
+        <AddCategory />
+      </Panel>
+      <Panel>
+        <ManageCategories />
       </Panel>
     </>
   );
