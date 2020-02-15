@@ -76,14 +76,14 @@ export const slideImages = [
     lineOne: "Fender",
     lineTwo: "Custom Shop",
     linkTitle: "Shop Now",
-    linkTo: "/shop"
+    linkTo: "/guitards"
   },
   {
     url: "/images/featured/featured_home_2.jpg",
     lineOne: "B-Stock",
     lineTwo: "Awesome Discount",
     linkTitle: "View Offers",
-    linkTo: "/shop"
+    linkTo: "/guitards"
   }
 ];
 
@@ -92,7 +92,7 @@ export const featuredHomeLast = {
   lineOne: "UP TO 40% OFF",
   lineTwo: "IN SECOND HAND GUITARDS",
   linkTitle: "Shop Now",
-  linkTo: "/shop"
+  linkTo: "/guitards"
 };
 
 export const properties = {
@@ -171,12 +171,12 @@ export const bestSelling = guitards => {
 };
 
 /* LOADER SECTION */
-export const Loader = _ => {
+export const Loader = ({ title = "Loading the guitard list" }) => {
   return (
     <div className="home__best">
       <div className="home__best--container loader--position">
         <div className="loader"></div>
-        <div className="loading__title">Loading the guitard list</div>
+        <div className="loading__title">{title}</div>
       </div>
     </div>
   );

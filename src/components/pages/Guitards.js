@@ -11,9 +11,6 @@ const Guitard = _ => {
   const [brandList, setBrandList] = useState([]);
   const [woodList, setWoodList] = useState([]);
 
-  //console.log(guitards.byBrands.get);
-  //console.log(guitards.byWoods.get);
-
   const getNameItem = (e, list, FilteredList) => {
     if (e.target.checked) {
       const selectedBrand = [...FilteredList, e.target.value];
@@ -24,6 +21,15 @@ const Guitard = _ => {
     }
   };
 
+  const filterList =
+    brandList.length !== 0 || woodList.length !== 0
+      ? guitards.list.get.filter(
+          item =>
+            brandList.includes(item.brand.name) ||
+            woodList.includes(item.woods.name)
+        )
+      : guitards.list.get;
+
   const getBrands = e => {
     getNameItem(e, setBrandList, brandList);
   };
@@ -31,8 +37,6 @@ const Guitard = _ => {
   const getWoods = e => {
     getNameItem(e, setWoodList, woodList);
   };
-
-  console.log(guitards.list.get);
 
   return (
     <div className="guitards__home">
@@ -53,7 +57,7 @@ const Guitard = _ => {
         <div className="guitard__right">
           {!guitards.loading.get ? (
             <HomeProductsDisplay
-              list={guitards.list.get}
+              list={filterList}
               classfix="best__item--card--fix"
               classFix_2="home__best--items--fix"
             />

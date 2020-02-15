@@ -11,7 +11,7 @@ import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 
 const BrandsFilter = ({ list, label, getName }) => {
   const [guitards] = useContext(Guitards);
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(true);
 
   const handleClick = _ => {
     setIsOpen(!isOpen);
@@ -42,7 +42,7 @@ const BrandsFilter = ({ list, label, getName }) => {
             </div>
           ))
         ) : (
-          <Loader />
+          <Loader title="Loading brands and woods" />
         )}
       </Collapse>
     </List>

@@ -1,5 +1,4 @@
-import React, { useContext } from "react";
-import { Loader } from "../../utils/utilities";
+import React from "react";
 
 const HomeProductsDisplay = ({ list, title, classfix, classFix_2 }) => {
   return (
@@ -15,7 +14,9 @@ const HomeProductsDisplay = ({ list, title, classfix, classFix_2 }) => {
                 alt="not found"
               />
               <span className="best__name">{item.name}</span>
-              <span className="best__code">{item.woods.name}</span>
+              <span className="best__code">
+                {item.woods.name} / {item.brand.name}
+              </span>
               <span className="best__price">${item.price}</span>
               <div className="best__buttons">
                 <div className="best__buttons--left">view product</div>
