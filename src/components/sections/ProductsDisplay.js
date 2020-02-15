@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+import { Loader } from "../../utils/utilities";
 
 const HomeProductsDisplay = ({ list, title, classfix, classFix_2 }) => {
   return (

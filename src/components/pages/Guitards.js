@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import { GuitardsTitle } from "../../utils/utilities";
 import GuitardsFilter from "../sections/GuitardsFilter";
 import HomeProductsDisplay from "../sections/ProductsDisplay";
+import { Loader } from "../../utils/utilities";
 
 import { Guitards } from "../../context/GuitardsProvider";
 
@@ -50,11 +51,15 @@ const Guitard = _ => {
           />
         </div>
         <div className="guitard__right">
-          <HomeProductsDisplay
-            list={guitards.list.get}
-            classfix="best__item--card--fix"
-            classFix_2="home__best--items--fix"
-          />
+          {!guitards.loading.get ? (
+            <HomeProductsDisplay
+              list={guitards.list.get}
+              classfix="best__item--card--fix"
+              classFix_2="home__best--items--fix"
+            />
+          ) : (
+            <Loader />
+          )}
         </div>
       </div>
     </div>

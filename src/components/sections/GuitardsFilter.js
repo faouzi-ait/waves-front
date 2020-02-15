@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Loader } from "../../utils/utilities";
+import { Guitards } from "../../context/GuitardsProvider";
 
 import List from "@material-ui/core/List";
 import Checkbox from "@material-ui/core/Checkbox";
@@ -9,6 +10,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 
 const BrandsFilter = ({ list, label, getName }) => {
+  const [guitards] = useContext(Guitards);
   const [isOpen, setIsOpen] = useState(false);
 
   const handleClick = _ => {
@@ -32,12 +34,16 @@ const BrandsFilter = ({ list, label, getName }) => {
         )}
       </ListItem>
       <Collapse in={isOpen}>
-        {list.map((item, i) => (
-          <div className="filter__box" key={i}>
-            <span>{item.name}</span>
-            <Checkbox value={item.name} onClick={e => getName(e)} />
-          </div>
-        ))}
+        {!guitards.loading.get ? (
+          list.map((item, i) => (
+            <div className="filter__box" key={i}>
+              <span>{item.name}</span>
+              <Checkbox value={item.name} onClick={e => getName(e)} />
+            </div>
+          ))
+        ) : (
+          <Loader />
+        )}
       </Collapse>
     </List>
   );
