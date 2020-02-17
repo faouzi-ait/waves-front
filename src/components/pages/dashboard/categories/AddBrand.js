@@ -32,7 +32,7 @@ const AddBrand = _ => {
       { headers: { Authorization: token } }
     )
       .then(_ => {
-        setConfirmation("The new brand was successfully created");
+        setConfirmation("New brand created");
         resetMessage(setConfirmation);
         setIsLoading(false);
         window.location.reload();

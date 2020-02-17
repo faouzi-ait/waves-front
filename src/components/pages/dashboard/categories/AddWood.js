@@ -32,7 +32,7 @@ const AddWood = _ => {
       { headers: { Authorization: token } }
     )
       .then(_ => {
-        setConfirmation("The new wood was successfully created");
+        setConfirmation("New wood created");
         resetMessage(setConfirmation);
         setIsLoading(false);
         window.location.reload();
