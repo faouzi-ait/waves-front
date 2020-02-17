@@ -15,6 +15,7 @@ const LoginComponent = () => {
 
   const onSubmit = async data => {
     setIsLoading(true);
+    
     await loginUser("https://waves-faouzi.herokuapp.com/api/v1/login", {
       email: data.email,
       password: data.password

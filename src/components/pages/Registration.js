@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { resetMessage } from "../../utils/utilities";
-import { registerUser } from "../../api/UserAccess";
+import {
+  resetMessage,
+  createField,
+  createEmailField
+} from "../../utils/utilities";
+import { sendPostRequest } from "../../api/UserAccess";
 import SubmitBtn from "../sections/SubmitBtn";
 
 const Registration = _ => {
@@ -11,15 +15,19 @@ const Registration = _ => {
   const [error, setError] = useState("");
   let history = useHistory();
 
-  const onSubmit = async data => {
+  const onSubmit = async (data, e) => {
     setIsLoading(true);
-    await registerUser("https://waves-faouzi.herokuapp.com/api/v1/register", {
-      name: data.name,
-      surname: data.lastname,
-      email: data.email,
-      password: data.password
-    })
+    await sendPostRequest(
+      "https://waves-faouzi.herokuapp.com/api/v1/register",
+      {
+        name: data.name,
+        surname: data.lastname,
+        email: data.email,
+        password: data.password
+      }
+    )
       .then(_ => {
+        e.target.reset();
         history.push("/login");
       })
       .catch(error => {
@@ -42,57 +50,26 @@ const Registration = _ => {
           <div className="login__title">personal information</div>
 
           <div className="login__registration registration__field">
-            <div>
-              <input
-                type="text"
-                name="name"
-                id="name"
-                placeholder="Enter your name"
-                className={errors.name ? "error" : ""}
-                autoComplete="off"
-                ref={register({ required: true })}
-              />
-              {errors.name && errors.name.type === "required" && (
-                <p className="login__error">Please type in your name</p>
-              )}
-            </div>
-            <div>
-              <input
-                type="text"
-                name="lastname"
-                id="lastname"
-                placeholder="Enter your lastname"
-                className={errors.lastname ? "error" : ""}
-                autoComplete="off"
-                ref={register({ required: true })}
-              />
-              {errors.lastname && errors.lastname.type === "required" && (
-                <p className="login__error">Please type in your lastname</p>
-              )}
-            </div>
+            {createField(
+              "text",
+              "name",
+              "Enter you name",
+              errors,
+              register,
+              "Please type in your name"
+            )}
+
+            {createField(
+              "text",
+              "lastname",
+              "Enter you lastname",
+              errors,
+              register,
+              "Please type in your lastname"
+            )}
           </div>
           <div className="login__email registration__email">
-            <input
-              type="email"
-              name="email"
-              id="email"
-              placeholder="Enter your email"
-              className={errors.email ? "error" : ""}
-              autoComplete="off"
-              ref={register({
-                required: " ",
-                pattern: {
-                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                  message: "Email format: you@yourmail.com"
-                }
-              })}
-            />
-            {errors.email && errors.email.type === "required" && (
-              <p className="login__error">Please type in your email</p>
-            )}
-            {errors.email && errors.email.message && (
-              <p className="login__error">{errors.email.message}</p>
-            )}
+            {createEmailField("email", errors, register)}
           </div>
 
           <div className="login__title registration__account">
@@ -120,20 +97,15 @@ const Registration = _ => {
                 <p className="login__error">Both passwords must match</p>
               )}
             </div>
-            <div>
-              <input
-                type="password"
-                name="confirmPassword"
-                id="confirmPassword"
-                placeholder="Confirm your password"
-                className={errors.lastname ? "error" : ""}
-                autoComplete="off"
-                ref={register({ required: true })}
-              />
-              {errors.lastname && errors.lastname.type === "required" && (
-                <p className="login__error">Confirm your password</p>
-              )}
-            </div>
+
+            {createField(
+              "password",
+              "confirmPassword",
+              "Confirm your password",
+              errors,
+              register,
+              "Confirm your password"
+            )}
           </div>
           <SubmitBtn
             isLoading={isLoading}

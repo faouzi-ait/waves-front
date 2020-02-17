@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { resetMessage } from "../../utils/utilities";
-import { sendMail } from "../../api/UserAccess";
+import {
+  resetMessage,
+  createField,
+  createEmailField
+} from "../../utils/utilities";
+import { sendPostRequest } from "../../api/UserAccess";
 import SubmitBtn from "../sections/SubmitBtn";
 
 const Contact = _ => {
@@ -12,13 +16,13 @@ const Contact = _ => {
 
   const onSubmit = async (data, e) => {
     setIsLoading(true);
-    await sendMail(
+    await sendPostRequest(
       "https://waves-faouzi.herokuapp.com/api/v1/contact/message",
       {
         name: data.name,
         lastname: data.lastname,
         email: data.email,
-        note: data.note
+        message: data.note
       }
     )
       .then(result => {
@@ -44,58 +48,27 @@ const Contact = _ => {
           <div className="login__title">send us a note to say hi!</div>
 
           <div className="login__registration registration__field">
-            <div>
-              <input
-                type="text"
-                name="name"
-                id="name"
-                placeholder="Enter your name"
-                className={errors.name ? "error" : ""}
-                autoComplete="off"
-                ref={register({ required: true })}
-              />
-              {errors.name && errors.name.type === "required" && (
-                <p className="login__error">Please type in your name</p>
-              )}
-            </div>
-            <div>
-              <input
-                type="text"
-                name="lastname"
-                id="lastname"
-                placeholder="Enter your lastname"
-                className={errors.lastname ? "error" : ""}
-                autoComplete="off"
-                ref={register({ required: true })}
-              />
-              {errors.lastname && errors.lastname.type === "required" && (
-                <p className="login__error">Please type in your lastname</p>
-              )}
-            </div>
+            {createField(
+              "text",
+              "name",
+              "Enter you name",
+              errors,
+              register,
+              "Please type in your name"
+            )}
+
+            {createField(
+              "text",
+              "lastname",
+              "Enter you lastname",
+              errors,
+              register,
+              "Please type in your lastname"
+            )}
           </div>
 
           <div className="login__email registration__email">
-            <input
-              type="email"
-              name="email"
-              id="email"
-              placeholder="Enter your email"
-              className={errors.email ? "error" : ""}
-              autoComplete="off"
-              ref={register({
-                required: " ",
-                pattern: {
-                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                  message: "Email format: you@yourmail.com"
-                }
-              })}
-            />
-            {errors.email && errors.email.type === "required" && (
-              <p className="login__error">Please type in your email</p>
-            )}
-            {errors.email && errors.email.message && (
-              <p className="login__error">{errors.email.message}</p>
-            )}
+            {createEmailField("email", errors, register)}
           </div>
 
           <div className="login__title registration__account">your message</div>
@@ -104,7 +77,6 @@ const Contact = _ => {
             <textarea
               type="note"
               name="note"
-              id="note"
               rows="4"
               cols="109"
               placeholder="Enter your message"
@@ -116,6 +88,7 @@ const Contact = _ => {
               <p className="login__error">Please type in your message</p>
             )}
           </div>
+
           <SubmitBtn
             isLoading={isLoading}
             register={register}

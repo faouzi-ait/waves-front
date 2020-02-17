@@ -9,8 +9,6 @@ const DashboardMain = _ => {
     setCurrentUser(JSON.parse(localStorage.getItem("waves_user")));
   }, []);
 
-  console.log(currentUser);
-
   return (
     <div className="dashboard__main">
       <div className="dashboard__top">

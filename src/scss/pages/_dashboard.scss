@@ -1,6 +1,6 @@
 .dashboard {
   font-family: $text_format;
-  min-height: $main-height - 5vh;
+  min-height: $main-height + 3vh;
 
   &__container {
     display: grid;
@@ -64,4 +64,48 @@ th {
 
 tr:nth-child(even) {
   background-color: #dddddd;
+}
+
+.add__product--part1 {
+  grid-template-columns: 35% 35% 15%;
+  grid-column-gap: 1rem;
+}
+
+.add__product--part2 {
+  grid-template-columns: 44.5% 44.5%;
+  grid-column-gap: 1rem;
+}
+
+.add__product--part3 {
+  grid-template-columns: 21.1% 21.1% 21.1% 21.1%;
+  grid-column-gap: 1rem;
+}
+
+.newproduct__container {
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+}
+
+.newproduct__title {
+  width: 91%;
+  margin-top: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(204, 204, 204, 0.308);
+}
+
+.newproduct__title:first-child {
+  margin-top: 0rem;
+}
+
+.submit__button {
+  width: 75%;
+}
+
+.newwood__layout {
+  display: grid;
+  grid-template-columns: 68% 30%;
+}
+
+.top__margin {
+  margin-top: 2rem !important;
 }

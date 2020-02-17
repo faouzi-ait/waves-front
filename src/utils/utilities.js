@@ -16,13 +16,11 @@ export const resetMessage = setError => {
 /* USER DASHBOARD COMPONENT */
 const Tab = ({ children }) => {
   const { onClick } = useTabState();
-
   return <p onClick={onClick}>{children}</p>;
 };
 
 const Panel = ({ children }) => {
   const isActive = usePanelState();
-
   return isActive ? <span>{children}</span> : null;
 };
 
@@ -83,6 +81,151 @@ export const dashboardPanel = _ => {
       <Panel>
         <ManageCategories />
       </Panel>
+    </>
+  );
+};
+
+export const createProductsList = (list, title) => {
+  return (
+    <>
+      <option value="">{title}</option>
+      {list.map((item, i) => (
+        <option value={item._id} key={i}>
+          {item.name}
+        </option>
+      ))}
+    </>
+  );
+};
+
+/*  */
+export const createOptions = type => {
+  return (
+    <>
+      <option value="">{type}</option>
+      <option value="true">Yes</option>
+      <option value="false">No</option>
+    </>
+  );
+};
+
+export const createOptionsDropdown = (
+  name,
+  errors,
+  register,
+  title,
+  errorLabel
+) => {
+  return (
+    <div>
+      <select
+        name={name}
+        className={errors.publish ? "error" : ""}
+        ref={register({ required: true })}
+      >
+        {createOptions(title)}
+      </select>
+      {errors.publish && errors.publish.type === "required" && (
+        <p className="login__error">{errorLabel}</p>
+      )}
+    </div>
+  );
+};
+
+export const createFretOption = (name, errors, register, errorLabel) => {
+  return (
+    <div>
+      <select
+        name={name}
+        className={errors.publish ? "error" : ""}
+        ref={register({ required: true })}
+      >
+        <>
+          <option value="">Fret</option>
+          <option value="20">20</option>
+          <option value="40">40</option>
+          <option value="60">60</option>
+        </>
+      </select>
+      {errors.publish && errors.publish.type === "required" && (
+        <p className="login__error">{errorLabel}</p>
+      )}
+    </div>
+  );
+};
+
+export const createField = (
+  type,
+  name,
+  placeHolder,
+  errors,
+  register,
+  errorLabel
+) => {
+  return (
+    <div>
+      <input
+        type={type}
+        name={name}
+        placeholder={placeHolder}
+        className={errors.name ? "error" : ""}
+        autoComplete="off"
+        ref={register({ required: true })}
+      />
+      {errors.name && errors.name.type === "required" && (
+        <p className="login__error">{errorLabel}</p>
+      )}
+    </div>
+  );
+};
+
+export const createDropdown = (
+  name,
+  list,
+  label,
+  errors,
+  register,
+  errorLabel
+) => {
+  return (
+    <div>
+      <select
+        name={name}
+        className={errors.brand ? "error" : ""}
+        ref={register({ required: true })}
+      >
+        {createProductsList(list, label)}
+      </select>
+      {errors.brand && errors.brand.type === "required" && (
+        <p className="login__error">{errorLabel}</p>
+      )}
+    </div>
+  );
+};
+
+export const createEmailField = (name, errors, register) => {
+  return (
+    <>
+      <input
+        type="email"
+        name={name}
+        placeholder="Enter your email"
+        className={errors.email ? "error" : ""}
+        autoComplete="off"
+        ref={register({
+          required: " ",
+          pattern: {
+            value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+            message: "Email format: you@yourmail.com"
+          }
+        })}
+      />
+      {errors.email && errors.email.type === "required" && (
+        <p className="login__error">Please type in your email</p>
+      )}
+      {errors.email && errors.email.message && (
+        <p className="login__error">{errors.email.message}</p>
+      )}
     </>
   );
 };

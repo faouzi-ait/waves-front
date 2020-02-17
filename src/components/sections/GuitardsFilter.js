@@ -7,7 +7,7 @@ import Checkbox from "@material-ui/core/Checkbox";
 import Collapse from "@material-ui/core/Collapse";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
-import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
+// import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 
 const BrandsFilter = ({ list, label, getName }) => {
   const [guitards] = useContext(Guitards);
