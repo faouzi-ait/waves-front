@@ -74,7 +74,7 @@ const AddProducts = _ => {
     <div>
       <form onSubmit={handleSubmit(onSubmit)} noValidate>
         <div className="newproduct__container newproduct__title">
-          Add a new product
+          Add a new guitard
         </div>
 
         <div className="addproduct__section--1 newproduct__title">
