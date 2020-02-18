@@ -15,7 +15,7 @@ const HomeProductsDisplay = ({ list, title, classfix, classFix_2 }) => {
                       ? "/images/image_not.png"
                       : item.images[0]
                   }
-                  className="best__images"
+                  className="best__images setting-image "
                   alt="not found"
                 />
                 <span className="best__name">{item.name}</span>
