@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useForm } from "react-hook-form";
+import axios from "axios";
 import {
   resetMessage,
   createOptionsDropdown,
@@ -15,6 +16,7 @@ const AddProducts = _ => {
   const [guitard] = useContext(Guitards);
   const { register, handleSubmit, errors } = useForm();
   const [isLoading, setIsLoading] = useState(false);
+  const [imageUrl, setImageUrl] = useState("");
   const [error, setError] = useState("");
   const [confirmation, setConfirmation] = useState("");
   const [token, setToken] = useState("");
@@ -44,6 +46,7 @@ const AddProducts = _ => {
         brand: data.brand,
         shipping: data.shipping,
         available: data.available,
+        images: imageUrl,
         frets: Number(data.fret),
         publish: data.publish
       },
@@ -57,6 +60,7 @@ const AddProducts = _ => {
         setConfirmation("The new guitard was successfully created");
         resetMessage(setConfirmation);
         setIsLoading(false);
+        setImageUrl("");
         e.target.reset();
       })
       .catch(error => {
@@ -70,12 +74,42 @@ const AddProducts = _ => {
       });
   };
 
+  const uploadImage = e => {
+    const files = e.target.files[0];
+    const formData = new FormData();
+
+    formData.append("upload_preset", "v4b6idgm");
+    formData.append("file", files);
+
+    axios
+      .post("https://api.cloudinary.com/v1_1/dav8ajo38/image/upload", formData)
+      .then(res => setImageUrl(res.data.secure_url))
+      .catch(err => console.log(err));
+  };
+
   return (
     <div>
       <form onSubmit={handleSubmit(onSubmit)} noValidate>
         <div className="newproduct__container newproduct__title">
           Add a new guitard
         </div>
+
+        <div className="addproduct__section--1 newproduct__title">
+          Add a Picture
+        </div>
+
+        <div className="">
+          <label htmlFor="file-upload" className="custom-file-upload">
+            <i className="fa fa-cloud-upload"></i> Custom Upload
+          </label>
+          <input
+            type="file"
+            name="file"
+            id="file-upload"
+            onChange={uploadImage}
+          />
+        </div>
+        {imageUrl && <img className="setting-image" src={imageUrl} alt="" />}
 
         <div className="addproduct__section--1 newproduct__title">
           Guitards Details
@@ -133,9 +167,7 @@ const AddProducts = _ => {
           )}
         </div>
 
-        <div className="addproduct__section--1 newproduct__title">
-          Delivery
-        </div>
+        <div className="addproduct__section--1 newproduct__title">Delivery</div>
         <div className="login__registration registration__field add__product--part3">
           {createOptionsDropdown(
             "shipping",

@@ -1,6 +1,6 @@
 .dashboard {
   font-family: $text_format;
-  min-height: $main-height + 3vh;
+  min-height: $main-height + 10vh;
 
   &__container {
     display: grid;
@@ -108,4 +108,26 @@ tr:nth-child(even) {
 
 .top__margin {
   margin-top: 2rem !important;
+}
+
+.setting-image {
+  width: 200px;
+}
+
+.setting-container {
+  width: 96%;
+  height: 12rem;
+  background: #000 !important;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.custom-file-upload {
+  display: inline-block;
+  margin: 1rem 0;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  cursor: pointer;
 }

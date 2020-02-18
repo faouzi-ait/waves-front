@@ -10,7 +10,11 @@ const HomeProductsDisplay = ({ list, title, classfix, classFix_2 }) => {
             list.map((item, i) => (
               <div className={`best__item--card ${classfix}`} key={i}>
                 <img
-                  src="/images/image_not.png"
+                  src={
+                    item.images && item.images.length === 0
+                      ? "/images/image_not.png"
+                      : item.images[0]
+                  }
                   className="best__images"
                   alt="not found"
                 />
