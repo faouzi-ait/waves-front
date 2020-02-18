@@ -44,7 +44,7 @@
 }
 
 .best__item--card--fix {
-   width: 25%;
+   width: 25% !important;
 }
 
 .home__best--items--fix {
@@ -54,7 +54,6 @@
 .best__images {
    border: 1px solid rgba(204, 204, 204, 0.164);
    height: 200px;
-   width: 90%;
 }
 
 .best__name {

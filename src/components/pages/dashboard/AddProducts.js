@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import Dropzone from "react-dropzone";
+
 import {
   resetMessage,
   createOptionsDropdown,
@@ -16,6 +18,7 @@ const AddProducts = _ => {
   const [guitard] = useContext(Guitards);
   const { register, handleSubmit, errors } = useForm();
   const [isLoading, setIsLoading] = useState(false);
+  const [imageLoading, setImageLoading] = useState(false);
   const [imageUrl, setImageUrl] = useState("");
   const [error, setError] = useState("");
   const [confirmation, setConfirmation] = useState("");
@@ -64,6 +67,7 @@ const AddProducts = _ => {
         e.target.reset();
       })
       .catch(error => {
+        console.log(error.response);
         if (String(error.response.status).startsWith("4")) {
           setError(errorMsg);
         } else if (String(error.response.status).startsWith("5")) {
@@ -74,17 +78,45 @@ const AddProducts = _ => {
       });
   };
 
-  const uploadImage = e => {
-    const files = e.target.files[0];
-    const formData = new FormData();
+  // SINGLE FILE UPLOAD v1
+  //   const uploadImage = e => {
+  //     const files = e.target.files[0];
+  //     const formData = new FormData();
 
-    formData.append("upload_preset", "v4b6idgm");
-    formData.append("file", files);
+  //     formData.append("upload_preset", "v4b6idgm");
+  //     formData.append("file", files);
 
-    axios
-      .post("https://api.cloudinary.com/v1_1/dav8ajo38/image/upload", formData)
-      .then(res => setImageUrl(res.data.secure_url))
-      .catch(err => console.log(err));
+  //     axios
+  //       .post("https://api.cloudinary.com/v1_1/dav8ajo38/image/upload", formData)
+  //       .then(res => setImageUrl(res.data.secure_url))
+  //       .catch(err => console.log(err));
+  //   };
+
+  const handleUploadImages = images => {
+    const uploads = images.map(image => {
+      const formData = new FormData();
+      formData.append("file", image);
+      formData.append("upload_preset", "v4b6idgm");
+      formData.append("timestamp", (Date.now() / 1000) | 0);
+
+      return axios
+        .post(
+          "https://api.cloudinary.com/v1_1/dav8ajo38/image/upload",
+          formData,
+          {
+            headers: {
+              "X-Requested-With": "XMLHttpRequest"
+            }
+          }
+        )
+        .then(setImageLoading(true))
+        .then(response => setImageUrl(response.data.secure_url));
+    });
+
+    // We would use axios `.all()` method to perform concurrent image upload to cloudinary.
+    axios.all(uploads).then(() => {
+      setImageLoading(false);
+    });
   };
 
   return (
@@ -98,7 +130,36 @@ const AddProducts = _ => {
           Add a Picture
         </div>
 
-        <div className="">
+        <Dropzone onDrop={handleUploadImages} multiple accept="image/*">
+          {({ getRootProps, getInputProps }) => {
+            return (
+              <div {...getRootProps()} className="dropzone">
+                <input {...getInputProps()} />
+                {!imageUrl ? (
+                  <div className="dropzone__zone">
+                    <div>
+                      {!imageLoading && (
+                        <i className="fa fa-search-plus dropzone__zone--icon"></i>
+                      )}
+                    </div>
+                    {imageLoading ? (
+                      <div className="dropzone__zone--loading">
+                        Image Loading...
+                      </div>
+                    ) : (
+                      ""
+                    )}
+                  </div>
+                ) : (
+                  <img className="setting-image" src={imageUrl} alt="" width="20%" height="100%" />
+                )}
+              </div>
+            );
+          }}
+        </Dropzone>
+
+        {/* SINGLE FILE UPLOAD v1 */}
+        {/* <div className="">
           <label htmlFor="file-upload" className="custom-file-upload">
             <i className="fa fa-cloud-upload"></i> Custom Upload
           </label>
@@ -109,7 +170,7 @@ const AddProducts = _ => {
             onChange={uploadImage}
           />
         </div>
-        {imageUrl && <img className="setting-image" src={imageUrl} alt="" />}
+        {imageUrl && <img className="setting-image" src={imageUrl} alt="" />} */}
 
         <div className="addproduct__section--1 newproduct__title">
           Guitards Details

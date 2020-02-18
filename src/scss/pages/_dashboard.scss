@@ -111,7 +111,7 @@ tr:nth-child(even) {
 }
 
 .setting-image {
-  max-width: 200px;
+
 }
 
 .setting-container {
@@ -130,4 +130,26 @@ input[type="file"] {
   padding: 6px 12px;
   border: 1px solid #ccc;
   cursor: pointer;
+}
+
+.dropzone {
+  width: 90% !important;
+  height: 8.4rem !important;
+  padding: .5rem;
+  border: 3px dashed rgba(0, 0, 0, 0.171) !important;
+
+  &__zone {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+    height: 100%;
+    background: #ccc;
+    border-radius: 3px;
+
+    &--icon {
+      color: rgb(128, 128, 128);
+      font-size: 2.75rem;
+    }
+  }
 }
