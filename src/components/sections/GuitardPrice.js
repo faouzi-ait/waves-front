@@ -3,19 +3,23 @@ import { Loader } from "../../utils/utilities";
 import { Guitards } from "../../context/GuitardsProvider";
 
 import List from "@material-ui/core/List";
-import Checkbox from "@material-ui/core/Checkbox";
-import FormLabel from "@material-ui/core/FormLabel";
 import Collapse from "@material-ui/core/Collapse";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 
+import Radio from "@material-ui/core/Radio";
+import RadioGroup from "@material-ui/core/RadioGroup";
+
 const BrandsFilter = ({ label, getName }) => {
   const [guitards] = useContext(Guitards);
   const [isOpen, setIsOpen] = useState(true);
+  const [selectedValue, setSelectedValue] = useState("");
 
   const handleClick = _ => {
     setIsOpen(!isOpen);
   };
+
+  getName(selectedValue);
 
   return (
     <List style={{ width: "80%" }}>
@@ -36,17 +40,32 @@ const BrandsFilter = ({ label, getName }) => {
       <Collapse in={isOpen}>
         {!guitards.loading.get ? (
           <>
-            <FormLabel component="legend" className="filter__label--box">
-              Select a price range option below
-            </FormLabel>
-            <div className="filter__box">
-              <span>Less than $500</span>
-              <Checkbox value="l500" onClick={e => getName(e)} />
-              <span>Between $500 & $1000</span>
-              <Checkbox value="b500&1000" onClick={e => getName(e)} />
-              <span>More than &1000</span>
-              <Checkbox value="m1000" onClick={e => getName(e)} />
-            </div>
+            <RadioGroup
+              aria-label="gender"
+              name="gender1"
+              value={selectedValue}
+            >
+              <div className="filter__box">
+                <span>Less than $500</span>
+                <Radio
+                  onChange={e => setSelectedValue(e.target.value)}
+                  value="l500"
+                  name="l500"
+                />
+                <span>Between $500 & $1000</span>
+                <Radio
+                  onChange={e => setSelectedValue(e.target.value)}
+                  value="b500&1000"
+                  name="b500&1000"
+                />
+                <span>More than &1000</span>
+                <Radio
+                  onChange={e => setSelectedValue(e.target.value)}
+                  value="m1000"
+                  name="m1000"
+                />
+              </div>
+            </RadioGroup>
           </>
         ) : (
           <Loader title="Loading brands and woods" />

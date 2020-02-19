@@ -53,9 +53,9 @@ const Guitard = _ => {
     getNameItem(e, setWoodList, woodList);
   };
 
-  const getPrice = e => {
-    if (e.target.checked) {
-      setPriceFilter(e.target.value);
+  const getPrice = price => {
+    if (price) {
+      setPriceFilter(price);
     } else {
       setPriceFilter("");
     }
