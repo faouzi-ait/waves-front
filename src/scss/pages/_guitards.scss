@@ -20,8 +20,6 @@
    }
 }
 
-.guitard__left {}
-
 .guitard__right {
    margin-top: -3rem;
    margin-left: -3rem;
@@ -32,6 +30,14 @@
    grid-template-columns: 90% 10%;
    padding-left: 4.4rem;
    align-items: center;
+}
+
+.filter__label--box {
+   margin: 1rem auto .5rem 4.4rem;
+}
+
+.prices__box {
+   padding-left: .5rem;
 }
 
 .no__items {

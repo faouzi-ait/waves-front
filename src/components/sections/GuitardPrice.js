@@ -4,11 +4,12 @@ import { Guitards } from "../../context/GuitardsProvider";
 
 import List from "@material-ui/core/List";
 import Checkbox from "@material-ui/core/Checkbox";
+import FormLabel from "@material-ui/core/FormLabel";
 import Collapse from "@material-ui/core/Collapse";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 
-const BrandsFilter = ({ list, label, getName }) => {
+const BrandsFilter = ({ label, getName }) => {
   const [guitards] = useContext(Guitards);
   const [isOpen, setIsOpen] = useState(true);
 
@@ -34,12 +35,19 @@ const BrandsFilter = ({ list, label, getName }) => {
       </ListItem>
       <Collapse in={isOpen}>
         {!guitards.loading.get ? (
-          list.map((item, i) => (
-            <div className="filter__box" key={i}>
-              <span>{item.name}</span>
-              <Checkbox value={item.name} onClick={e => getName(e)} />
+          <>
+            <FormLabel component="legend" className="filter__label--box">
+              Select a price range option below
+            </FormLabel>
+            <div className="filter__box">
+              <span>Less than $500</span>
+              <Checkbox value="l500" onClick={e => getName(e)} />
+              <span>Between $500 & $1000</span>
+              <Checkbox value="b500&1000" onClick={e => getName(e)} />
+              <span>More than &1000</span>
+              <Checkbox value="m1000" onClick={e => getName(e)} />
             </div>
-          ))
+          </>
         ) : (
           <Loader title="Loading brands and woods" />
         )}

@@ -1,6 +1,6 @@
 .dashboard {
   font-family: $text_format;
-  min-height: $main-height + 10vh;
+  min-height: $main-height + 30vh;
 
   &__container {
     display: grid;
@@ -110,10 +110,6 @@ tr:nth-child(even) {
   margin-top: 2rem !important;
 }
 
-.setting-image {
-
-}
-
 .setting-container {
   width: 96%;
   height: 12rem;
@@ -137,6 +133,8 @@ input[type="file"] {
   height: 8.4rem !important;
   padding: .5rem;
   border: 3px dashed rgba(0, 0, 0, 0.171) !important;
+  cursor: pointer;
+  outline: none;
 
   &__zone {
     display: flex;
@@ -152,4 +150,16 @@ input[type="file"] {
       font-size: 2.75rem;
     }
   }
+}
+
+.zone__layout {
+  display: flex;
+  height: 100%;
+}
+
+.dropzone__message {
+  margin: 0 auto;
+  align-self: center;
+  letter-spacing: 1px;
+  font-style: italic;
 }

@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import { GuitardsTitle } from "../../utils/utilities";
 import GuitardsFilter from "../sections/GuitardsFilter";
+import GuitardPrice from "../sections/GuitardPrice";
 import HomeProductsDisplay from "../sections/ProductsDisplay";
 import { Loader } from "../../utils/utilities";
 
@@ -10,6 +11,7 @@ const Guitard = _ => {
   const [guitards] = useContext(Guitards);
   const [brandList, setBrandList] = useState([]);
   const [woodList, setWoodList] = useState([]);
+  const [priceFilter, setPriceFilter] = useState("");
 
   const getNameItem = (e, list, FilteredList) => {
     if (e.target.checked) {
@@ -30,12 +32,33 @@ const Guitard = _ => {
         )
       : guitards.list.get;
 
+  const filterPriceList =
+    priceFilter !== ""
+      ? filterList.filter(item => {
+          if (priceFilter === "l500") {
+            return item.price < 500;
+          } else if (priceFilter === "b500&1000") {
+            return item.price > 500 && item.price < 1000;
+          } else if (priceFilter === "m1000") {
+            return item.price > 1000;
+          }
+        })
+      : filterList;
+
   const getBrands = e => {
     getNameItem(e, setBrandList, brandList);
   };
 
   const getWoods = e => {
     getNameItem(e, setWoodList, woodList);
+  };
+
+  const getPrice = e => {
+    if (e.target.checked) {
+      setPriceFilter(e.target.value);
+    } else {
+      setPriceFilter("");
+    }
   };
 
   return (
@@ -53,11 +76,16 @@ const Guitard = _ => {
             label="Woods"
             getName={getWoods}
           />
+          <GuitardPrice
+            list={guitards.byWoods.get}
+            label="Prices"
+            getName={getPrice}
+          />
         </div>
         <div className="guitard__right">
           {!guitards.loading.get ? (
             <HomeProductsDisplay
-              list={filterList}
+              list={filterPriceList}
               classfix="best__item--card--fix"
               classFix_2="home__best--items--fix"
             />

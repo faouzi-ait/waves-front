@@ -10,6 +10,8 @@ import {
   createDropdown,
   createFretOption
 } from "../../../utils/utilities";
+import { makeStyles } from "@material-ui/core/styles";
+import CircularProgress from "@material-ui/core/CircularProgress";
 import { sendAuthenticatedPostRequest } from "../../../api/UserAccess";
 import { Guitards } from "../../../context/GuitardsProvider";
 import SubmitBtn from "../../sections/SubmitBtn";
@@ -23,6 +25,17 @@ const AddProducts = _ => {
   const [error, setError] = useState("");
   const [confirmation, setConfirmation] = useState("");
   const [token, setToken] = useState("");
+
+  const useStyles = makeStyles(theme => ({
+    root: {
+      display: "flex",
+      "& > * + *": {
+        marginLeft: theme.spacing(2)
+      }
+    }
+  }));
+
+  const classes = useStyles();
 
   useEffect(
     _ => {
@@ -136,22 +149,35 @@ const AddProducts = _ => {
               <div {...getRootProps()} className="dropzone">
                 <input {...getInputProps()} />
                 {!imageUrl ? (
-                  <div className="dropzone__zone">
-                    <div>
-                      {!imageLoading && (
-                        <i className="fa fa-search-plus dropzone__zone--icon"></i>
+                  <div className="zone__layout">
+                    <div className="dropzone__zone">
+                      <div>
+                        {!imageLoading && (
+                          <div>
+                            <i className="fa fa-search-plus dropzone__zone--icon"></i>
+                          </div>
+                        )}
+                      </div>
+                      {imageLoading ? (
+                        <div className={classes.root}>
+                          <CircularProgress />
+                        </div>
+                      ) : (
+                        ""
                       )}
                     </div>
-                    {imageLoading ? (
-                      <div className="dropzone__zone--loading">
-                        Image Loading...
-                      </div>
-                    ) : (
-                      ""
-                    )}
+                    <div className="dropzone__message">
+                      Click to upload or drag and drop one here
+                    </div>
                   </div>
                 ) : (
-                  <img className="setting-image" src={imageUrl} alt="" width="20%" height="100%" />
+                  <img
+                    className="setting-image"
+                    src={imageUrl}
+                    alt=""
+                    width="20%"
+                    height="100%"
+                  />
                 )}
               </div>
             );

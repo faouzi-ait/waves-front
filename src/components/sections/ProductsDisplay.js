@@ -17,6 +17,7 @@ const HomeProductsDisplay = ({ list, title, classfix, classFix_2 }) => {
                   }
                   className="best__images setting-image "
                   alt="not found"
+                  width="65%"
                 />
                 <span className="best__name">{item.name}</span>
                 <span className="best__code">
