@@ -160,6 +160,11 @@ input[type="file"] {
 .dropzone__message {
   margin: 0 auto;
   align-self: center;
+  text-align: center;
   letter-spacing: 1px;
   font-style: italic;
+
+  &--advice {
+    margin-top: .5rem
+  }
 }

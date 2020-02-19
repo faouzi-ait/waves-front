@@ -167,7 +167,11 @@ const AddProducts = _ => {
                       )}
                     </div>
                     <div className="dropzone__message">
-                      Click to upload or drag and drop one here
+                      <p>Click to upload or drag and drop one here</p>
+                      <p className="dropzone__message--advice">
+                        For optimal display quality, the images should be
+                        340x340
+                      </p>
                     </div>
                   </div>
                 ) : (
