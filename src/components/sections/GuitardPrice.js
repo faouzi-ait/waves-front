@@ -40,12 +40,13 @@ const BrandsFilter = ({ label, getName }) => {
       <Collapse in={isOpen}>
         {!guitards.loading.get ? (
           <>
-            <RadioGroup
-              aria-label="gender"
-              name="gender1"
-              value={selectedValue}
-            >
+            <RadioGroup value={selectedValue}>
               <div className="filter__box">
+                <span>All Guitards</span>
+                <Radio
+                  onChange={e => setSelectedValue(e.target.value)}
+                  value="all"
+                />
                 <span>Less than $500</span>
                 <Radio
                   onChange={e => setSelectedValue(e.target.value)}

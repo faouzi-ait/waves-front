@@ -39,6 +39,8 @@ const Guitard = _ => {
             return item.price < 500;
           } else if (priceFilter === "b500&1000") {
             return item.price > 500 && item.price < 1000;
+          } else if (priceFilter === "all") {
+            return item;
           } else if (priceFilter === "m1000") {
             return item.price > 1000;
           }
