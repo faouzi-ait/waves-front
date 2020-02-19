@@ -50,19 +50,16 @@ const BrandsFilter = ({ label, getName }) => {
                 <Radio
                   onChange={e => setSelectedValue(e.target.value)}
                   value="l500"
-                  name="l500"
                 />
                 <span>Between $500 & $1000</span>
                 <Radio
                   onChange={e => setSelectedValue(e.target.value)}
                   value="b500&1000"
-                  name="b500&1000"
                 />
                 <span>More than &1000</span>
                 <Radio
                   onChange={e => setSelectedValue(e.target.value)}
                   value="m1000"
-                  name="m1000"
                 />
               </div>
             </RadioGroup>
