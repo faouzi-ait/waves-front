@@ -10,6 +10,9 @@ export const GuitardsProvider = props => {
   const [guitardWoods, setGuitardWoods] = useState([]);
 
   const [isLoading, setIsLoading] = useState(false);
+  const [openModal, setOpenModel] = useState(false);
+  const [guitardId, setGuitardId] = useState("");
+
   const [isBestSellingLoading, setIsBestSellingLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -47,7 +50,9 @@ export const GuitardsProvider = props => {
       get: isBestSellingLoading,
       set: setIsBestSellingLoading
     },
-    error: { get: error, set: setError }
+    error: { get: error, set: setError },
+    modal: { get: openModal, set: setOpenModel },
+    guitard: { get: guitardId, set: setGuitardId }
   };
 
   return (

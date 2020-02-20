@@ -21,7 +21,7 @@ const AddProducts = _ => {
   const { register, handleSubmit, errors } = useForm();
   const [isLoading, setIsLoading] = useState(false);
   const [imageLoading, setImageLoading] = useState(false);
-  const [imageUrl, setImageUrl] = useState("");
+  const [imageUrl, setImageUrl] = useState([]);
   const [error, setError] = useState("");
   const [confirmation, setConfirmation] = useState("");
   const [token, setToken] = useState("");
@@ -76,7 +76,7 @@ const AddProducts = _ => {
         setConfirmation("The new guitard was successfully created");
         resetMessage(setConfirmation);
         setIsLoading(false);
-        setImageUrl("");
+        setImageUrl([]);
         e.target.reset();
       })
       .catch(error => {
@@ -106,7 +106,8 @@ const AddProducts = _ => {
   //   };
 
   const handleUploadImages = images => {
-    const uploads = images.map(image => {
+    let uploads = images.map(image => {
+      let imageList = [];
       const formData = new FormData();
       formData.append("file", image);
       formData.append("upload_preset", "v4b6idgm");
@@ -123,7 +124,10 @@ const AddProducts = _ => {
           }
         )
         .then(setImageLoading(true))
-        .then(response => setImageUrl(response.data.secure_url));
+        .then(response => {
+          imageList = [...imageUrl, response.data.secure_url];
+          setImageUrl(imageList);
+        });
     });
 
     // We would use axios `.all()` method to perform concurrent image upload to cloudinary.
@@ -131,6 +135,8 @@ const AddProducts = _ => {
       setImageLoading(false);
     });
   };
+
+  console.log(imageUrl);
 
   return (
     <div>
@@ -148,7 +154,7 @@ const AddProducts = _ => {
             return (
               <div {...getRootProps()} className="dropzone">
                 <input {...getInputProps()} />
-                {!imageUrl ? (
+                {imageUrl.length === 0 ? (
                   <div className="zone__layout">
                     <div className="dropzone__zone">
                       <div>
@@ -167,7 +173,7 @@ const AddProducts = _ => {
                       )}
                     </div>
                     <div className="dropzone__message">
-                      <p>Click to upload or drag and drop one here</p>
+                      <p>Click to upload or drag and drop here</p>
                       <p className="dropzone__message--advice">
                         For optimal display quality, the images should be
                         340x340
@@ -175,13 +181,22 @@ const AddProducts = _ => {
                     </div>
                   </div>
                 ) : (
-                  <img
-                    className="setting-image"
-                    src={imageUrl}
-                    alt=""
-                    width="20%"
-                    height="100%"
-                  />
+                  imageUrl.map(url => (
+                    <img
+                      className="setting-image"
+                      src={url}
+                      alt=""
+                      width="20%"
+                      height="100%"
+                    />
+                  ))
+                  // <img
+                  //   className="setting-image"
+                  //   src={imageUrl}
+                  //   alt=""
+                  //   width="20%"
+                  //   height="100%"
+                  // />
                 )}
               </div>
             );

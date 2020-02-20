@@ -55,7 +55,7 @@ const Guitard = _ => {
     getNameItem(e, setWoodList, woodList);
   };
 
-  const getPrice = price => {
+  const getPriceRange = price => {
     if (price) {
       setPriceFilter(price);
     } else {
@@ -81,7 +81,7 @@ const Guitard = _ => {
           <GuitardPrice
             list={guitards.byWoods.get}
             label="Prices"
-            getName={getPrice}
+            getPriceRange={getPriceRange}
           />
         </div>
         <div className="guitard__right">

@@ -10,7 +10,7 @@ import ListItemText from "@material-ui/core/ListItemText";
 import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
 
-const BrandsFilter = ({ label, getName }) => {
+const BrandsFilter = ({ label, getPriceRange }) => {
   const [guitards] = useContext(Guitards);
   const [isOpen, setIsOpen] = useState(true);
   const [selectedValue, setSelectedValue] = useState("");
@@ -19,7 +19,7 @@ const BrandsFilter = ({ label, getName }) => {
     setIsOpen(!isOpen);
   };
 
-  getName(selectedValue);
+  getPriceRange(selectedValue);
 
   return (
     <List style={{ width: "80%" }}>
@@ -42,7 +42,7 @@ const BrandsFilter = ({ label, getName }) => {
           <>
             <RadioGroup value={selectedValue}>
               <div className="filter__box">
-                <span>All Guitards</span>
+                <span>All Prices</span>
                 <Radio
                   onChange={e => setSelectedValue(e.target.value)}
                   value="all"
@@ -57,7 +57,7 @@ const BrandsFilter = ({ label, getName }) => {
                   onChange={e => setSelectedValue(e.target.value)}
                   value="b500&1000"
                 />
-                <span>More than &1000</span>
+                <span>More than $1000</span>
                 <Radio
                   onChange={e => setSelectedValue(e.target.value)}
                   value="m1000"
