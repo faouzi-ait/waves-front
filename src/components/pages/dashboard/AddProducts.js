@@ -190,13 +190,6 @@ const AddProducts = _ => {
                       height="100%"
                     />
                   ))
-                  // <img
-                  //   className="setting-image"
-                  //   src={imageUrl}
-                  //   alt=""
-                  //   width="20%"
-                  //   height="100%"
-                  // />
                 )}
               </div>
             );

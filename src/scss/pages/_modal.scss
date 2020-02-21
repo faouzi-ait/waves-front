@@ -12,7 +12,7 @@
 
    &--pane {
       width: 60%;
-      height: 65%;
+      height: 85%;
       background: #fff;
       border-radius: 3px;
    }
@@ -21,6 +21,8 @@
       display: grid;
       grid-template-columns: 90% 10%;
       height: 3rem;
+      margin-bottom: 1rem;
+
       box-shadow: 0px 0px 6px 3px rgba(119, 119, 119, 0.15);
       -moz-box-shadow: 0px 0px 6px 3px rgba(119, 119, 119, 0.15);
       -webkit-box-shadow: 0px 0px 6px 3px rgba(185, 185, 185, 0.15);
@@ -43,5 +45,120 @@
       }
    }
 
-   &--title {}
+   &--body {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+   }
+
+   &--left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+   }
+
+   &--right {
+      padding-right: 1.5rem;
+   }
+}
+
+.image__box {
+   width: 65%;
+   min-height: 35vh;
+   text-align: center;
+   margin-bottom: .25rem;
+   border: 1px solid #ccc;
+}
+
+.image__details {
+   display: flex;
+   width: 65%;
+   align-content: flex-start;
+   min-height: 15vh;
+   border: 1px solid #ccc;
+}
+
+.image__margin {
+   margin-right: 2px;
+}
+
+.modal {
+
+   &__section-2 {
+      margin-bottom: 1.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid #ccc;
+   }
+
+   &__title {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+   }
+
+   &__dummy-text {
+      margin-bottom: 1.5rem;
+      padding-right: .5rem;
+      letter-spacing: 1px;
+      border-top: none !important;
+      opacity: .75;
+   }
+
+   &__shipping {
+      display: flex;
+
+      :first-child {
+         margin-right: 1rem;
+         font-size: 2rem;
+         opacity: .5;
+      }
+   }
+
+   &__price {
+      font-size: 2rem;
+   }
+
+   &__section-3,
+   &__cart-btn {
+      margin-bottom: 1.5rem;
+   }
+
+   &__cart-btn {
+      width: 30%;
+      border: none;
+   }
+
+   &__section-4 {
+      padding-bottom: 2rem;
+      border-top: 1px solid #ccc;
+
+      .modal__spec-- {
+         &title {
+            font-size: 1.5rem;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+         }
+
+         &fret,
+         &wood {
+            text-transform: uppercase;
+            opacity: .5;
+         }
+
+         &wood {
+            margin-top: .5rem;
+         }
+
+      }
+   }
+}
+
+.product__availability {
+   display: inline-block;
+   margin: 0 !important;
+}
+
+.product__availability:nth-child(1) {
+   display: inline-block;
+   margin-top: -10px !important;
+   margin-right: 8px !important;
 }

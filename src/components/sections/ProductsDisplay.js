@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import { Guitards } from "../../context/GuitardsProvider";
 import Modal from "./Modal";
 
