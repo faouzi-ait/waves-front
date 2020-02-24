@@ -16,6 +16,15 @@ const Modals = ({ id }) => {
       : methods.addToCart(e.target.dataset.id);
   };
 
+  const isItemAdded = _ => {
+    const guitard = shoppingCart.cart.get.find(item => item._id === id);
+
+    if (!guitard) {
+      return true;
+    }
+    return false;
+  };
+
   return (
     <div>
       <div className="modal__container">
@@ -112,7 +121,7 @@ const Modals = ({ id }) => {
                   data-id={guitard._id}
                   onClick={addToCart}
                 >
-                  add to cart
+                  {isItemAdded(id) ? "Add to Cart" : "Add 1 More"}
                 </div>
               </div>
               <div className="modal__section-4">
