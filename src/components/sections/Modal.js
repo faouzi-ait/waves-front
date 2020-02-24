@@ -1,18 +1,19 @@
 import React, { useContext } from "react";
 import { Guitards } from "../../context/GuitardsProvider";
+import { ShoppingCart } from "../../context/ShoppingCartProvider";
+
+import { isGuitardInCart } from "../../utils/utilities";
 
 const Modals = ({ id }) => {
+  const [shoppingCart, methods] = useContext(ShoppingCart);
   const [guitards] = useContext(Guitards);
 
   const guitard = guitards.list.get.find(item => item._id === id);
-  console.log(guitard);
-
-  const closeModal = _ => {
-    guitards.modal.set(false);
-  };
 
   const addToCart = e => {
-    console.log(e.target.dataset.id);
+    isGuitardInCart(e.target.dataset.id, shoppingCart.cart.get)
+      ? methods.addToQuantity(e.target.dataset.id)
+      : methods.addToCart(e.target.dataset.id);
   };
 
   return (
@@ -23,7 +24,10 @@ const Modals = ({ id }) => {
             <div className="modal__container--title">
               {guitard.name} - {guitard.woods.name} / {guitard.brand.name}
             </div>
-            <div className="modal__container--closebutton" onClick={closeModal}>
+            <div
+              className="modal__container--closebutton"
+              onClick={() => guitards.modal.set(false)}
+            >
               <i className="fa fa-times btn__rotate"></i>
             </div>
           </div>
@@ -76,7 +80,7 @@ const Modals = ({ id }) => {
               </div>
               <div className="modal__section-2">
                 <div className="modal__shipping">
-                    <i className="fa fa-truck"></i>
+                  <i className="fa fa-truck"></i>
                   <p>
                     {guitard.shipping ? "Free Shipping" : "Charged Shipping"}
                   </p>
@@ -88,7 +92,7 @@ const Modals = ({ id }) => {
                     </span>
                   ) : (
                     <span className="product__availability">
-                      <i class="fa fa-times"></i>
+                      <i className="fa fa-times"></i>
                     </span>
                   )}
                   <p>
@@ -100,7 +104,7 @@ const Modals = ({ id }) => {
                 </div>
               </div>
               <div className="modal__section-3">
-                <span className="modal__price">$ {guitard.price}</span>
+                <span className="modal__price">${guitard.price}</span>
               </div>
               <div className="best__buttons modal__cart-btn">
                 <div

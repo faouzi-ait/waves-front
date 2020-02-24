@@ -2,7 +2,10 @@ import React, { useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { UserLogin } from "../../context/LoginProvider";
 
+import { ShoppingCart } from "../../context/ShoppingCartProvider";
+
 const Header = _ => {
+  const [shoppingCart, methods] = useContext(ShoppingCart);
   const [login] = useContext(UserLogin);
   let history = useHistory();
 
@@ -22,14 +25,16 @@ const Header = _ => {
         <div className="header__top">
           <div className="header__top--content">
             <a href="/cart" className="login__myacc">
-              my cart
+              my cart{" "}
+              {shoppingCart.cart.get  && shoppingCart.cart.get.length > 0 &&
+                shoppingCart.cart.get.length}
             </a>
             {!login.isLoggedin.get ? (
               <a href="/login">login</a>
             ) : (
               <>
                 <a href="/user/dashboard" className="login__myacc">
-                  my account
+                  account
                 </a>
                 <a href="/" onClick={logout}>
                   logout

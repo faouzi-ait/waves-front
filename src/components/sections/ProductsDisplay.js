@@ -1,13 +1,22 @@
 import React, { useContext } from "react";
 import { Guitards } from "../../context/GuitardsProvider";
+import { ShoppingCart } from "../../context/ShoppingCartProvider";
+import { isGuitardInCart } from "../../utils/utilities";
 import Modal from "./Modal";
 
 const HomeProductsDisplay = ({ list, title, classfix, classFix_2 }) => {
   const [guitards] = useContext(Guitards);
+  const [shoppingCart, methods] = useContext(ShoppingCart);
 
   const openModalDetail = e => {
     guitards.modal.set(true);
     guitards.guitard.set(e.target.dataset.id);
+  };
+
+  const addToCart = e => {
+    isGuitardInCart(e.target.dataset.id, shoppingCart.cart.get)
+      ? methods.addToQuantity(e.target.dataset.id)
+      : methods.addToCart(e.target.dataset.id);
   };
 
   return (
@@ -45,7 +54,11 @@ const HomeProductsDisplay = ({ list, title, classfix, classFix_2 }) => {
                     </div>
 
                     <div className="best__buttons--right">
-                      <i className="fa fa-lock"></i>
+                      <i
+                        className="fa fa-plus"
+                        data-id={item._id}
+                        onClick={addToCart}
+                      ></i>
                     </div>
                   </div>
                 </div>

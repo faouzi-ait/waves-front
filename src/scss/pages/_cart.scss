@@ -6,3 +6,35 @@
       @include form_container;
    }
 }
+
+td,
+th {
+   border: none;
+}
+
+table {
+
+   td,
+   th {
+      text-align: center;
+   }
+
+   th {
+      text-transform: uppercase;
+      letter-spacing: 1px;
+   }
+
+   i {
+      cursor: pointer;
+   }
+}
+
+.cart__quantity {
+   margin-left: .4rem;
+   margin-right: .4rem
+}
+
+.checkout__btn {
+   margin-top: 1rem;
+   text-align: center;
+}

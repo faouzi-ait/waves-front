@@ -351,3 +351,16 @@ export const GuitardsTitle = ({ title }) => {
     </div>
   );
 };
+
+/* FIND GUITARD BY ID */
+export const findProductById = (array, id) => {
+  return array.find(item => item._id === id);
+};
+
+export const isGuitardInCart = (id, list) => {
+  const selectedGuitard = list.find(item => item._id === id);
+
+  if (!selectedGuitard) return false;
+
+  return true;
+};
