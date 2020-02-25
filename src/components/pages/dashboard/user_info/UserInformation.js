@@ -3,14 +3,13 @@ import React from "react";
 const UserInformation = ({ currentUser }) => {
   return (
     <>
-      <div className="login__title">user information</div>
+      <div className="login__title text__centered">user information</div>
       <div className="dashboard__main--details">
         <ul>
-          <li>{currentUser.name}</li>
-          <li>{currentUser.lastname}</li>
-          <li>{currentUser.email}</li>
+          <li>Name: {currentUser.name}</li>
+          <li>Last name: {currentUser.lastname}</li>
+          <li>Email: {currentUser.email}</li>
         </ul>
-        <button className="login__button login__bold">edit account</button>
       </div>
     </>
   );

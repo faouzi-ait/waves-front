@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+import Sticky from "react-stickynode";
 import { GuitardsTitle } from "../../utils/utilities";
 import GuitardsFilter from "../sections/GuitardsFilter";
 import GuitardPrice from "../sections/GuitardPrice";
@@ -68,22 +69,23 @@ const Guitard = _ => {
       <GuitardsTitle title="browse products" />
       <div className="guitards__home--container">
         <div className="guitard__left">
-          <GuitardsFilter
-            list={guitards.byBrands.get}
-            label="Brands"
-            getName={getBrands}
-          />
-          <GuitardsFilter
-            list={guitards.byWoods.get}
-            label="Woods"
-            getName={getWoods}
-          />
-          <GuitardPrice
-            list={guitards.byWoods.get}
-            label="Prices"
-            getPriceRange={getPriceRange}
-          />
+            <GuitardsFilter
+              list={guitards.byBrands.get}
+              label="Brands"
+              getName={getBrands}
+            />
+            <GuitardsFilter
+              list={guitards.byWoods.get}
+              label="Woods"
+              getName={getWoods}
+            />
+            <GuitardPrice
+              list={guitards.byWoods.get}
+              label="Prices"
+              getPriceRange={getPriceRange}
+            />
         </div>
+
         <div className="guitard__right">
           {!guitards.loading.get ? (
             <HomeProductsDisplay

@@ -33,9 +33,9 @@ export const dashboardMenu = _ => {
           <li>
             <Tab>User Information</Tab>
           </li>
-          <li>
+          {/* <li>
             <Tab>My Account</Tab>
-          </li>
+          </li> */}
         </ul>
       </div>
     </>

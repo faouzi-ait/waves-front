@@ -1,54 +1,80 @@
 .guitards__home {
-   min-height: $main_height;
-   font-family: $text_format;
+  min-height: $main_height;
+  font-family: $text_format;
 
-   &--title {
-      border-bottom: 1px solid #ccc;
+  &--title {
+    border-bottom: 1px solid #ccc;
 
-      .title {
-         width: 90%;
-         margin: 0 auto;
-         padding: 1rem 0;
-         text-transform: uppercase;
-      }
-   }
+    .title {
+      width: 90%;
+      margin: 0 auto;
+      padding: 1rem 0;
+      text-transform: uppercase;
+    }
+  }
 
-   &--container {
-      display: grid;
-      grid-template-columns: 30% 70%;
-      margin: 1rem auto;
-   }
+  &--container {
+    display: grid;
+    grid-template-columns: 30% 70%;
+    margin: 1rem auto;
+  }
+}
+
+.sticky {
+   position: -webkit-sticky;
+   position: sticky;
+}
+
+.sticky.sticky-fixed.is-sticky {
+   margin-top: 0;
+   margin-bottom: 0;
+   position: fixed;
+   -webkit-backface-visibility: hidden;
+   -moz-backface-visibility: hidden;
+   backface-visibility: hidden;
+}
+
+.sticky.sticky-fixed.is-sticky:not([style*="margin-top"]) {
+   margin-top: 0 !important;
+}
+
+.sticky.sticky-fixed.is-sticky:not([style*="margin-bottom"]) {
+   margin-bottom: 0 !important;
+}
+
+.sticky.sticky-fixed.is-absolute {
+   position: absolute;
 }
 
 .guitard__right {
-   margin-top: -3rem;
-   margin-left: -3rem;
+  margin-top: -3rem;
+  margin-left: -3rem;
 }
 
 .filter__box {
-   display: grid;
-   grid-template-columns: 90% 10%;
-   padding-left: 4.4rem;
-   align-items: center;
+  display: grid;
+  grid-template-columns: 90% 10%;
+  padding-left: 4.4rem;
+  align-items: center;
 }
 
 .filter__label--box {
-   margin: 1rem auto .5rem 4.4rem;
+  margin: 1rem auto 0.5rem 4.4rem;
 }
 
 .prices__box {
-   padding-left: .5rem;
+  padding-left: 0.5rem;
 }
 
 .no__items {
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   width: 100%;
-   height: 75vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 75vh;
 
-   &--message {
-      letter-spacing: 1px;
-      font-size: 2rem;
-   }
+  &--message {
+    letter-spacing: 1px;
+    font-size: 2rem;
+  }
 }

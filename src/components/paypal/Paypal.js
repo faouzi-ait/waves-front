@@ -29,7 +29,7 @@ const MyApp = _ => {
   const onSuccess = payment => {
     // Congratulation, it came here means everything's fine!
     // You can bind the "payment" object's value to your state or props or whatever here, please see below for sample returned data
-    let date = new Date()
+    let date = new Date();
     fromStorage.unshift(date.toISOString());
 
     axios
@@ -68,7 +68,11 @@ const MyApp = _ => {
       .catch(err => console.log(err));
 
     methods.clearCart();
-    history.push("/user/dashboard");
+    history.push("/");
+
+    setTimeout(() => {
+      history.push("/user/dashboard");
+    }, 500);
   };
 
   const onCancel = data => {

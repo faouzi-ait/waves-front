@@ -22,6 +22,7 @@ const LoginComponent = () => {
     })
       .then(_ => {
         login.isLoggedin.set(true);
+        history.push("/");
         history.push("/user/dashboard");
       })
       .catch(error => {
