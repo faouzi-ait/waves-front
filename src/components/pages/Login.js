@@ -23,9 +23,6 @@ const LoginComponent = () => {
       .then(_ => {
         login.isLoggedin.set(true);
         history.push("/");
-        setTimeout(() => {
-          history.push("/user/dashboard");
-        }, 750);
       })
       .catch(error => {
         if (String(error.response.status).startsWith("4")) {
