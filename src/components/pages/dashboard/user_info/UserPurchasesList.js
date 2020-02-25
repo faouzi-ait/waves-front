@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { UserLogin } from "../../../../context/LoginProvider";
+
 import axios from "axios";
 
 const UserPurchasesList = _ => {
@@ -27,7 +28,7 @@ const UserPurchasesList = _ => {
       <div className="login__title text__centered">purchase history</div>
       <div className="dashboard__main--details">
         <div className="history__layout">
-          {userHistory.length &&
+          {userHistory.length ? (
             userHistory.map((item, i) => (
               <>
                 <div className="history__date" key={i}>
@@ -42,7 +43,10 @@ const UserPurchasesList = _ => {
                   </div>
                 ))}
               </>
-            ))}
+            ))
+          ) : (
+            <div className="text__centered">No order in your history</div>
+          )}
         </div>
       </div>
     </>

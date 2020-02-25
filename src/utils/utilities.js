@@ -54,9 +54,9 @@ export const dashboardAdminMenu = _ => {
           <li>
             <Tab>Add Categories</Tab>
           </li>
-          <li>
+          {/* <li>
             <Tab>Manage Categories</Tab>
-          </li>
+          </li> */}
         </ul>
       </div>
     </>
@@ -69,18 +69,18 @@ export const dashboardPanel = _ => {
       <Panel>
         <MainAccount />
       </Panel>
-      <Panel>
+      {/* <Panel>
         <MyAccount />
-      </Panel>
+      </Panel> */}
       <Panel>
         <AddProduct />
       </Panel>
       <Panel>
         <AddCategory />
       </Panel>
-      <Panel>
+      {/* <Panel>
         <ManageCategories />
-      </Panel>
+      </Panel> */}
     </>
   );
 };

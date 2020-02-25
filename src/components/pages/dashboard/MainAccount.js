@@ -14,9 +14,11 @@ const DashboardMain = _ => {
       <div className="dashboard__top">
         <UserInformation currentUser={currentUser} />
       </div>
-      <div className="dashboard__bottom">
-        <UserPurchasesList />
-      </div>
+      {!currentUser.isAdmin && (
+        <div className="dashboard__bottom">
+          <UserPurchasesList />
+        </div>
+      )}
     </div>
   );
 };
