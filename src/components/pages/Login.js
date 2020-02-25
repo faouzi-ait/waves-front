@@ -15,7 +15,7 @@ const LoginComponent = () => {
 
   const onSubmit = async data => {
     setIsLoading(true);
-    
+
     await loginUser("https://waves-faouzi.herokuapp.com/api/v1/login", {
       email: data.email,
       password: data.password
@@ -23,7 +23,9 @@ const LoginComponent = () => {
       .then(_ => {
         login.isLoggedin.set(true);
         history.push("/");
-        history.push("/user/dashboard");
+        setTimeout(() => {
+          history.push("/user/dashboard");
+        }, 750);
       })
       .catch(error => {
         if (String(error.response.status).startsWith("4")) {
