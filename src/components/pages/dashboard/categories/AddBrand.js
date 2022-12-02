@@ -1,46 +1,46 @@
-import React, { useState, useEffect } from "react";
-import { useForm } from "react-hook-form";
-import { resetMessage, createField } from "../../../../utils/utilities";
-import { sendAuthenticatedPostRequest } from "../../../../api/UserAccess";
-import SubmitBtn from "../../../sections/SubmitBtn";
+import React, { useState, useEffect } from 'react';
+import { useForm } from 'react-hook-form';
+import { resetMessage, createField } from '../../../../utils/utilities';
+import { sendAuthenticatedPostRequest } from '../../../../api/UserAccess';
+import SubmitBtn from '../../../sections/SubmitBtn';
 
-const AddBrand = _ => {
+const AddBrand = (_) => {
   const { register, handleSubmit, errors } = useForm();
-  const [token, setToken] = useState("");
+  const [token, setToken] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState("");
-  const [confirmation, setConfirmation] = useState("");
+  const [error, setError] = useState('');
+  const [confirmation, setConfirmation] = useState('');
 
   useEffect(
-    _ => {
+    (_) => {
       getToken();
     },
     [token]
   );
 
-  const getToken = async _ => {
-    await setToken(localStorage.getItem("waves_token"));
+  const getToken = async (_) => {
+    await setToken(localStorage.getItem('waves_token'));
   };
 
-  const onSubmit = async data => {
+  const onSubmit = async (data) => {
     const errorMsg = "Couldn't create the new brand";
     setIsLoading(true);
 
     await sendAuthenticatedPostRequest(
-      "https://waves-faouzi.herokuapp.com/api/v1/products/newbrand",
+      'https://powerful-pink-antelope.cyclic.app/api/v1/products/newbrand',
       { name: data.name },
       { headers: { Authorization: token } }
     )
-      .then(_ => {
-        setConfirmation("New brand created");
+      .then((_) => {
+        setConfirmation('New brand created');
         resetMessage(setConfirmation);
         setIsLoading(false);
         window.location.reload();
       })
-      .catch(error => {
-        if (String(error.response.status).startsWith("4")) {
+      .catch((error) => {
+        if (String(error.response.status).startsWith('4')) {
           setError(errorMsg);
-        } else if (String(error.response.status).startsWith("5")) {
+        } else if (String(error.response.status).startsWith('5')) {
           setError(errorMsg);
         }
         resetMessage(setError);
@@ -57,12 +57,12 @@ const AddBrand = _ => {
       <div className="newwood__layout">
         <div className="login__registration">
           {createField(
-            "text",
-            "name",
-            "Guitard Brand",
+            'text',
+            'name',
+            'Guitard Brand',
             errors,
             register,
-            "Specify a brand"
+            'Specify a brand'
           )}
         </div>
         <div className="submit__button">

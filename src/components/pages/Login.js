@@ -1,35 +1,35 @@
-import React, { useState, useContext } from "react";
-import { useForm } from "react-hook-form";
-import { useHistory } from "react-router-dom";
-import { loginUser } from "../../api/UserAccess";
-import { UserLogin } from "../../context/LoginProvider";
-import { resetMessage } from "../../utils/utilities";
-import SubmitBtn from "../sections/SubmitBtn";
+import React, { useState, useContext } from 'react';
+import { useForm } from 'react-hook-form';
+import { useHistory } from 'react-router-dom';
+import { loginUser } from '../../api/UserAccess';
+import { UserLogin } from '../../context/LoginProvider';
+import { resetMessage } from '../../utils/utilities';
+import SubmitBtn from '../sections/SubmitBtn';
 
 const LoginComponent = () => {
   const { register, handleSubmit, errors } = useForm();
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [login] = useContext(UserLogin);
   let history = useHistory();
 
-  const onSubmit = async data => {
+  const onSubmit = async (data) => {
     setIsLoading(true);
 
-    await loginUser("https://waves-faouzi.herokuapp.com/api/v1/login", {
+    await loginUser('https://powerful-pink-antelope.cyclic.app/api/v1/login', {
       email: data.email,
-      password: data.password
+      password: data.password,
     })
-      .then(_ => {
+      .then((_) => {
         login.isLoggedin.set(true);
-        history.push("/");
+        history.push('/');
       })
-      .catch(error => {
-        if (String(error.response.status).startsWith("4")) {
+      .catch((error) => {
+        if (String(error.response.status).startsWith('4')) {
           setError(error.response.data.message);
-        } else if (String(error.response.status).startsWith("5")) {
+        } else if (String(error.response.status).startsWith('5')) {
           setError(
-            "There was an error while trying to log you in, please try again later"
+            'There was an error while trying to log you in, please try again later'
           );
         }
         resetMessage(setError);
@@ -65,17 +65,17 @@ const LoginComponent = () => {
                   name="email"
                   id="email"
                   placeholder="Your email"
-                  className={errors.email ? "error" : ""}
+                  className={errors.email ? 'error' : ''}
                   autoComplete="off"
                   ref={register({
-                    required: " ",
+                    required: ' ',
                     pattern: {
                       value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                      message: "Email format: you@yourmail.com"
-                    }
+                      message: 'Email format: you@yourmail.com',
+                    },
                   })}
                 />
-                {errors.email && errors.email.type === "required" && (
+                {errors.email && errors.email.type === 'required' && (
                   <p className="login__error">Please type in your email</p>
                 )}
                 {errors.email && errors.email.message && (
@@ -89,11 +89,11 @@ const LoginComponent = () => {
                   name="password"
                   id="password"
                   placeholder="Your password"
-                  className={errors.password ? "error" : ""}
+                  className={errors.password ? 'error' : ''}
                   autoComplete="off"
                   ref={register({ required: true })}
                 />
-                {errors.password && errors.password.type === "required" && (
+                {errors.password && errors.password.type === 'required' && (
                   <p className="login__error">Please type in your password</p>
                 )}
               </div>

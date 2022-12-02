@@ -1,41 +1,41 @@
-import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
-import { useForm } from "react-hook-form";
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
 import {
   resetMessage,
   createField,
-  createEmailField
-} from "../../utils/utilities";
-import { sendPostRequest } from "../../api/UserAccess";
-import SubmitBtn from "../sections/SubmitBtn";
+  createEmailField,
+} from '../../utils/utilities';
+import { sendPostRequest } from '../../api/UserAccess';
+import SubmitBtn from '../sections/SubmitBtn';
 
-const Registration = _ => {
+const Registration = (_) => {
   const { register, watch, handleSubmit, errors } = useForm();
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [error, setError] = useState('');
   let history = useHistory();
 
   const onSubmit = async (data, e) => {
     setIsLoading(true);
     await sendPostRequest(
-      "https://waves-faouzi.herokuapp.com/api/v1/register",
+      'https://powerful-pink-antelope.cyclic.app/api/v1/register',
       {
         name: data.name,
         surname: data.lastname,
         email: data.email,
-        password: data.password
+        password: data.password,
       }
     )
-      .then(_ => {
+      .then((_) => {
         e.target.reset();
-        history.push("/login");
+        history.push('/login');
       })
-      .catch(error => {
-        if (String(error.response.status).startsWith("4")) {
+      .catch((error) => {
+        if (String(error.response.status).startsWith('4')) {
           setError(error.response.data.message);
-        } else if (String(error.response.status).startsWith("5")) {
+        } else if (String(error.response.status).startsWith('5')) {
           setError(
-            "There was an error while trying to log you in, please try again later"
+            'There was an error while trying to log you in, please try again later'
           );
         }
         resetMessage(setError);
@@ -51,25 +51,25 @@ const Registration = _ => {
 
           <div className="login__registration registration__field">
             {createField(
-              "text",
-              "name",
-              "Enter you name",
+              'text',
+              'name',
+              'Enter you name',
               errors,
               register,
-              "Please type in your name"
+              'Please type in your name'
             )}
 
             {createField(
-              "text",
-              "lastname",
-              "Enter you lastname",
+              'text',
+              'lastname',
+              'Enter you lastname',
               errors,
               register,
-              "Please type in your lastname"
+              'Please type in your lastname'
             )}
           </div>
           <div className="login__email registration__email">
-            {createEmailField("email", errors, register)}
+            {createEmailField('email', errors, register)}
           </div>
 
           <div className="login__title registration__account">
@@ -83,14 +83,14 @@ const Registration = _ => {
                 name="password"
                 id="password"
                 placeholder="Enter your password"
-                className={errors.name ? "error" : ""}
+                className={errors.name ? 'error' : ''}
                 autoComplete="off"
                 ref={register({
                   required: true,
-                  validate: value => value === watch("confirmPassword")
+                  validate: (value) => value === watch('confirmPassword'),
                 })}
               />
-              {errors.password && errors.password.type === "required" && (
+              {errors.password && errors.password.type === 'required' && (
                 <p className="login__error">Please type in your password</p>
               )}
               {errors.password && (
@@ -99,12 +99,12 @@ const Registration = _ => {
             </div>
 
             {createField(
-              "password",
-              "confirmPassword",
-              "Confirm your password",
+              'password',
+              'confirmPassword',
+              'Confirm your password',
               errors,
               register,
-              "Confirm your password"
+              'Confirm your password'
             )}
           </div>
           <SubmitBtn

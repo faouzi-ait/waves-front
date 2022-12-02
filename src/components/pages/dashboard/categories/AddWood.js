@@ -1,46 +1,46 @@
-import React, { useState, useEffect } from "react";
-import { useForm } from "react-hook-form";
-import { resetMessage, createField } from "../../../../utils/utilities";
-import { sendAuthenticatedPostRequest } from "../../../../api/UserAccess";
-import SubmitBtn from "../../../sections/SubmitBtn";
+import React, { useState, useEffect } from 'react';
+import { useForm } from 'react-hook-form';
+import { resetMessage, createField } from '../../../../utils/utilities';
+import { sendAuthenticatedPostRequest } from '../../../../api/UserAccess';
+import SubmitBtn from '../../../sections/SubmitBtn';
 
-const AddWood = _ => {
+const AddWood = (_) => {
   const { register, handleSubmit, errors } = useForm();
-  const [token, setToken] = useState("");
+  const [token, setToken] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState("");
-  const [confirmation, setConfirmation] = useState("");
+  const [error, setError] = useState('');
+  const [confirmation, setConfirmation] = useState('');
 
   useEffect(
-    _ => {
+    (_) => {
       getToken();
     },
     [token]
   );
 
-  const getToken = async _ => {
-    await setToken(localStorage.getItem("waves_token"));
+  const getToken = async (_) => {
+    await setToken(localStorage.getItem('waves_token'));
   };
 
-  const onSubmit = async data => {
+  const onSubmit = async (data) => {
     const errorMsg = "Couldn't create the new wood";
     setIsLoading(true);
 
     await sendAuthenticatedPostRequest(
-      "https://waves-faouzi.herokuapp.com/api/v1/products/newwood",
+      'https://powerful-pink-antelope.cyclic.app/api/v1/products/newwood',
       { name: data.name },
       { headers: { Authorization: token } }
     )
-      .then(_ => {
-        setConfirmation("New wood created");
+      .then((_) => {
+        setConfirmation('New wood created');
         resetMessage(setConfirmation);
         setIsLoading(false);
         window.location.reload();
       })
-      .catch(error => {
-        if (String(error.response.status).startsWith("4")) {
+      .catch((error) => {
+        if (String(error.response.status).startsWith('4')) {
           setError(errorMsg);
-        } else if (String(error.response.status).startsWith("5")) {
+        } else if (String(error.response.status).startsWith('5')) {
           setError(errorMsg);
         }
         resetMessage(setError);
@@ -57,12 +57,12 @@ const AddWood = _ => {
       <div className="newwood__layout">
         <div className="login__registration">
           {createField(
-            "text",
-            "name",
-            "Guitard Wood",
+            'text',
+            'name',
+            'Guitard Wood',
             errors,
             register,
-            "Specify a Wood"
+            'Specify a Wood'
           )}
         </div>
         <div className="submit__button">

@@ -1,59 +1,59 @@
-import React, { useState, useEffect, useContext } from "react";
-import { useForm } from "react-hook-form";
-import axios from "axios";
-import Dropzone from "react-dropzone";
+import React, { useState, useEffect, useContext } from 'react';
+import { useForm } from 'react-hook-form';
+import axios from 'axios';
+import Dropzone from 'react-dropzone';
 
 import {
   resetMessage,
   createOptionsDropdown,
   createField,
   createDropdown,
-  createFretOption
-} from "../../../utils/utilities";
-import { makeStyles } from "@material-ui/core/styles";
-import CircularProgress from "@material-ui/core/CircularProgress";
-import { sendAuthenticatedPostRequest } from "../../../api/UserAccess";
-import { Guitards } from "../../../context/GuitardsProvider";
-import SubmitBtn from "../../sections/SubmitBtn";
+  createFretOption,
+} from '../../../utils/utilities';
+import { makeStyles } from '@material-ui/core/styles';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import { sendAuthenticatedPostRequest } from '../../../api/UserAccess';
+import { Guitards } from '../../../context/GuitardsProvider';
+import SubmitBtn from '../../sections/SubmitBtn';
 
-const AddProducts = _ => {
+const AddProducts = (_) => {
   const [guitard] = useContext(Guitards);
   const { register, handleSubmit, errors } = useForm();
   const [isLoading, setIsLoading] = useState(false);
   const [imageLoading, setImageLoading] = useState(false);
   const [imageUrl, setImageUrl] = useState([]);
-  const [error, setError] = useState("");
-  const [confirmation, setConfirmation] = useState("");
-  const [token, setToken] = useState("");
+  const [error, setError] = useState('');
+  const [confirmation, setConfirmation] = useState('');
+  const [token, setToken] = useState('');
 
-  const useStyles = makeStyles(theme => ({
+  const useStyles = makeStyles((theme) => ({
     root: {
-      display: "flex",
-      "& > * + *": {
-        marginLeft: theme.spacing(2)
-      }
-    }
+      display: 'flex',
+      '& > * + *': {
+        marginLeft: theme.spacing(2),
+      },
+    },
   }));
 
   const classes = useStyles();
 
   useEffect(
-    _ => {
+    (_) => {
       getToken();
     },
     [token]
   );
 
-  const getToken = async _ => {
-    await setToken(localStorage.getItem("waves_token"));
+  const getToken = async (_) => {
+    await setToken(localStorage.getItem('waves_token'));
   };
 
   const onSubmit = async (data, e) => {
-    const errorMsg = "There was an error while creating  the new guitard";
+    const errorMsg = 'There was an error while creating  the new guitard';
     setIsLoading(true);
 
     await sendAuthenticatedPostRequest(
-      "https://waves-faouzi.herokuapp.com/api/v1/products/newguitard",
+      'https://powerful-pink-antelope.cyclic.app/api/v1/products/newguitard',
       {
         name: data.name,
         description: data.description,
@@ -64,26 +64,26 @@ const AddProducts = _ => {
         available: data.available,
         images: imageUrl,
         frets: Number(data.fret),
-        publish: data.publish
+        publish: data.publish,
       },
       {
         headers: {
-          Authorization: token
-        }
+          Authorization: token,
+        },
       }
     )
-      .then(_ => {
-        setConfirmation("The new guitard was successfully created");
+      .then((_) => {
+        setConfirmation('The new guitard was successfully created');
         resetMessage(setConfirmation);
         setIsLoading(false);
         setImageUrl([]);
         e.target.reset();
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error.response);
-        if (String(error.response.status).startsWith("4")) {
+        if (String(error.response.status).startsWith('4')) {
           setError(errorMsg);
-        } else if (String(error.response.status).startsWith("5")) {
+        } else if (String(error.response.status).startsWith('5')) {
           setError(errorMsg);
         }
         resetMessage(setError);
@@ -105,26 +105,26 @@ const AddProducts = _ => {
   //       .catch(err => console.log(err));
   //   };
 
-  const handleUploadImages = images => {
-    let uploads = images.map(image => {
+  const handleUploadImages = (images) => {
+    let uploads = images.map((image) => {
       let imageList = [];
       const formData = new FormData();
-      formData.append("file", image);
-      formData.append("upload_preset", "v4b6idgm");
-      formData.append("timestamp", (Date.now() / 1000) | 0);
+      formData.append('file', image);
+      formData.append('upload_preset', 'v4b6idgm');
+      formData.append('timestamp', (Date.now() / 1000) | 0);
 
       return axios
         .post(
-          "https://api.cloudinary.com/v1_1/dav8ajo38/image/upload",
+          'https://api.cloudinary.com/v1_1/dav8ajo38/image/upload',
           formData,
           {
             headers: {
-              "X-Requested-With": "XMLHttpRequest"
-            }
+              'X-Requested-With': 'XMLHttpRequest',
+            },
           }
         )
         .then(setImageLoading(true))
-        .then(response => {
+        .then((response) => {
           imageList = [...imageUrl, response.data.secure_url];
           setImageUrl(imageList);
         });
@@ -169,7 +169,7 @@ const AddProducts = _ => {
                           <CircularProgress />
                         </div>
                       ) : (
-                        ""
+                        ''
                       )}
                     </div>
                     <div className="dropzone__message">
@@ -181,7 +181,7 @@ const AddProducts = _ => {
                     </div>
                   </div>
                 ) : (
-                  imageUrl.map(url => (
+                  imageUrl.map((url) => (
                     <img
                       className="setting-image"
                       src={url}
@@ -216,30 +216,30 @@ const AddProducts = _ => {
 
         <div className="login__registration registration__field add__product--part1">
           {createField(
-            "text",
-            "name",
-            "Guitard Name",
+            'text',
+            'name',
+            'Guitard Name',
             errors,
             register,
-            "Specify a name"
+            'Specify a name'
           )}
 
           {createField(
-            "text",
-            "description",
-            "Guitard description",
+            'text',
+            'description',
+            'Guitard description',
             errors,
             register,
-            "Specify a description"
+            'Specify a description'
           )}
 
           {createField(
-            "number",
-            "price",
-            "Price",
+            'number',
+            'price',
+            'Price',
             errors,
             register,
-            "Price Required"
+            'Price Required'
           )}
         </div>
 
@@ -248,48 +248,48 @@ const AddProducts = _ => {
         </div>
         <div className="login__registration registration__field add__product--part2">
           {createDropdown(
-            "brand",
+            'brand',
             guitard.byBrands.get,
-            "Select a Brand",
+            'Select a Brand',
             errors,
             register,
-            "Specify a brand"
+            'Specify a brand'
           )}
 
           {createDropdown(
-            "wood",
+            'wood',
             guitard.byWoods.get,
-            "Select a wood",
+            'Select a wood',
             errors,
             register,
-            "Specify a type of wood"
+            'Specify a type of wood'
           )}
         </div>
 
         <div className="addproduct__section--1 newproduct__title">Delivery</div>
         <div className="login__registration registration__field add__product--part3">
           {createOptionsDropdown(
-            "shipping",
+            'shipping',
             errors,
             register,
-            "Shipping",
-            "Is Shipping?"
+            'Shipping',
+            'Is Shipping?'
           )}
 
           {createOptionsDropdown(
-            "available",
+            'available',
             errors,
             register,
-            "Available",
-            "Is Available?"
+            'Available',
+            'Is Available?'
           )}
-          {createFretOption("fret", errors, register, "Fret", "Fret values?")}
+          {createFretOption('fret', errors, register, 'Fret', 'Fret values?')}
           {createOptionsDropdown(
-            "publish",
+            'publish',
             errors,
             register,
-            "Publish",
-            "Is Publish?"
+            'Publish',
+            'Is Publish?'
           )}
         </div>
 

@@ -1,25 +1,27 @@
-import React, { useState, useContext } from "react";
-import Sticky from "react-stickynode";
-import { GuitardsTitle } from "../../utils/utilities";
-import GuitardsFilter from "../sections/GuitardsFilter";
-import GuitardPrice from "../sections/GuitardPrice";
-import HomeProductsDisplay from "../sections/ProductsDisplay";
-import { Loader } from "../../utils/utilities";
+import React, { useState, useContext } from 'react';
+import Sticky from 'react-stickynode';
+import { GuitardsTitle } from '../../utils/utilities';
+import GuitardsFilter from '../sections/GuitardsFilter';
+import GuitardPrice from '../sections/GuitardPrice';
+import HomeProductsDisplay from '../sections/ProductsDisplay';
+import { Loader } from '../../utils/utilities';
 
-import { Guitards } from "../../context/GuitardsProvider";
+import { Guitards } from '../../context/GuitardsProvider';
 
-const Guitard = _ => {
+const Guitard = (_) => {
   const [guitards] = useContext(Guitards);
   const [brandList, setBrandList] = useState([]);
   const [woodList, setWoodList] = useState([]);
-  const [priceFilter, setPriceFilter] = useState("");
+  const [priceFilter, setPriceFilter] = useState('');
 
   const getNameItem = (e, list, FilteredList) => {
     if (e.target.checked) {
       const selectedBrand = [...FilteredList, e.target.value];
       list(selectedBrand);
     } else {
-      const currentBrand = FilteredList.filter(item => item !== e.target.value);
+      const currentBrand = FilteredList.filter(
+        (item) => item !== e.target.value
+      );
       list(currentBrand);
     }
   };
@@ -27,40 +29,35 @@ const Guitard = _ => {
   const filterList =
     brandList.length !== 0 || woodList.length !== 0
       ? guitards.list.get.filter(
-          item =>
+          (item) =>
             brandList.includes(item.brand.name) ||
             woodList.includes(item.woods.name)
         )
       : guitards.list.get;
 
   const filterPriceList =
-    priceFilter !== ""
-      ? filterList.filter(item => {
-          if (priceFilter === "l500") {
+    priceFilter !== ''
+      ? filterList.filter((item) => {
+          if (priceFilter === 'l500') {
             return item.price < 500;
-          } else if (priceFilter === "b500&1000") {
+          } else if (priceFilter === 'b500&1000') {
             return item.price > 500 && item.price < 1000;
-          } else if (priceFilter === "all") {
+          } else if (priceFilter === 'all') {
             return item;
-          } else if (priceFilter === "m1000") {
+          } else if (priceFilter === 'm1000') {
             return item.price > 1000;
           }
         })
       : filterList;
 
-  const getBrands = e => {
-    getNameItem(e, setBrandList, brandList);
-  };
+  const getBrands = (e) => getNameItem(e, setBrandList, brandList);
+  const getWoods = (e) => getNameItem(e, setWoodList, woodList);
 
-  const getWoods = e => {
-    getNameItem(e, setWoodList, woodList);
-  };
-
-  const getPriceRange = price => {
+  const getPriceRange = (price) => {
     if (price) {
       setPriceFilter(price);
     } else {
-      setPriceFilter("");
+      setPriceFilter('');
     }
   };
 
@@ -69,21 +66,21 @@ const Guitard = _ => {
       <GuitardsTitle title="browse products" />
       <div className="guitards__home--container">
         <div className="guitard__left">
-            <GuitardsFilter
-              list={guitards.byBrands.get}
-              label="Brands"
-              getName={getBrands}
-            />
-            <GuitardsFilter
-              list={guitards.byWoods.get}
-              label="Woods"
-              getName={getWoods}
-            />
-            <GuitardPrice
-              list={guitards.byWoods.get}
-              label="Prices"
-              getPriceRange={getPriceRange}
-            />
+          <GuitardsFilter
+            list={guitards.byBrands.get}
+            label="Brands"
+            getName={getBrands}
+          />
+          <GuitardsFilter
+            list={guitards.byWoods.get}
+            label="Woods"
+            getName={getWoods}
+          />
+          <GuitardPrice
+            list={guitards.byWoods.get}
+            label="Prices"
+            getPriceRange={getPriceRange}
+          />
         </div>
 
         <div className="guitard__right">

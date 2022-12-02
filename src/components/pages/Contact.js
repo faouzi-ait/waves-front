@@ -1,41 +1,41 @@
-import React, { useState } from "react";
-import { useForm } from "react-hook-form";
+import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
 import {
   resetMessage,
   createField,
-  createEmailField
-} from "../../utils/utilities";
-import { sendPostRequest } from "../../api/UserAccess";
-import SubmitBtn from "../sections/SubmitBtn";
+  createEmailField,
+} from '../../utils/utilities';
+import { sendPostRequest } from '../../api/UserAccess';
+import SubmitBtn from '../sections/SubmitBtn';
 
-const Contact = _ => {
+const Contact = (_) => {
   const { register, handleSubmit, errors } = useForm();
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState("");
-  const [confirmation, setConfirmation] = useState("");
+  const [error, setError] = useState('');
+  const [confirmation, setConfirmation] = useState('');
 
   const onSubmit = async (data, e) => {
     setIsLoading(true);
     await sendPostRequest(
-      "https://waves-faouzi.herokuapp.com/api/v1/contact/message",
+      'https://powerful-pink-antelope.cyclic.app/api/v1/contact/message',
       {
         name: data.name,
         lastname: data.lastname,
         email: data.email,
-        message: data.note
+        message: data.note,
       }
     )
-      .then(result => {
+      .then((result) => {
         setConfirmation(result.data.message);
         setIsLoading(false);
         resetMessage(setConfirmation);
         e.target.reset();
       })
-      .catch(error => {
-        if (String(error.response.status).startsWith("4")) {
+      .catch((error) => {
+        if (String(error.response.status).startsWith('4')) {
           setError(error.response.data.message);
-        } else if (String(error.response.status).startsWith("5")) {
-          setError("The message could not be sent, please try again later");
+        } else if (String(error.response.status).startsWith('5')) {
+          setError('The message could not be sent, please try again later');
         }
         resetMessage(setError);
       });
@@ -49,26 +49,26 @@ const Contact = _ => {
 
           <div className="login__registration registration__field">
             {createField(
-              "text",
-              "name",
-              "Enter you name",
+              'text',
+              'name',
+              'Enter you name',
               errors,
               register,
-              "Please type in your name"
+              'Please type in your name'
             )}
 
             {createField(
-              "text",
-              "lastname",
-              "Enter you lastname",
+              'text',
+              'lastname',
+              'Enter you lastname',
               errors,
               register,
-              "Please type in your lastname"
+              'Please type in your lastname'
             )}
           </div>
 
           <div className="login__email registration__email">
-            {createEmailField("email", errors, register)}
+            {createEmailField('email', errors, register)}
           </div>
 
           <div className="login__title registration__account">your message</div>
@@ -80,11 +80,10 @@ const Contact = _ => {
               rows="4"
               cols="109"
               placeholder="Enter your message"
-              className={errors.note ? "error" : ""}
+              className={errors.note ? 'error' : ''}
               autoComplete="off"
-              ref={register({ required: true })}
-            ></textarea>
-            {errors.note && errors.note.type === "required" && (
+              ref={register({ required: true })}></textarea>
+            {errors.note && errors.note.type === 'required' && (
               <p className="login__error">Please type in your message</p>
             )}
           </div>
