@@ -1,19 +1,19 @@
-import React, { useContext } from "react";
-import { useHistory } from "react-router-dom";
-import { UserLogin } from "../../context/LoginProvider";
+import React, { useContext } from 'react';
+import { useHistory } from 'react-router-dom';
+import { UserLogin } from '../../context/LoginProvider';
 
-import { ShoppingCart } from "../../context/ShoppingCartProvider";
+import { ShoppingCart } from '../../context/ShoppingCartProvider';
 
-const Header = _ => {
-  const [shoppingCart, methods] = useContext(ShoppingCart);
+const Header = (_) => {
+  const [shoppingCart /*, methods*/] = useContext(ShoppingCart);
   const [login] = useContext(UserLogin);
   let history = useHistory();
 
-  const logout = e => {
-    localStorage.removeItem("waves_token");
-    localStorage.removeItem("waves_user");
+  const logout = (e) => {
+    localStorage.removeItem('waves_token');
+    localStorage.removeItem('waves_user');
     login.isLoggedin.set(false);
-    history.push("/");
+    history.push('/');
   };
 
   return (
@@ -25,8 +25,9 @@ const Header = _ => {
         <div className="header__top">
           <div className="header__top--content">
             <a href="/cart" className="login__myacc">
-              my cart{" "}
-              {shoppingCart.cart.get  && shoppingCart.cart.get.length > 0 &&
+              my cart{' '}
+              {shoppingCart.cart.get &&
+                shoppingCart.cart.get.length > 0 &&
                 shoppingCart.cart.get.length}
             </a>
             {!login.isLoggedin.get ? (

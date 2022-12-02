@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import Sticky from 'react-stickynode';
+// import Sticky from 'react-stickynode';
 import { GuitardsTitle } from '../../utils/utilities';
 import GuitardsFilter from '../sections/GuitardsFilter';
 import GuitardPrice from '../sections/GuitardPrice';
@@ -47,6 +47,7 @@ const Guitard = (_) => {
           } else if (priceFilter === 'm1000') {
             return item.price > 1000;
           }
+          return null;
         })
       : filterList;
 

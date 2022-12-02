@@ -7,19 +7,22 @@ const UserPurchasesList = _ => {
   const [login] = useContext(UserLogin);
   const [userHistory, setUserHistory] = useState({});
 
-  useEffect(_ => {
-    const getUser = async id => {
-      return await axios.get(`${process.env.REACT_APP_BASE_URL}/user/${id}`, {
-        headers: {
-          Authorization: login.token.get
-        }
-      });
-    };
+  useEffect(
+    (_) => {
+      const getUser = async (id) => {
+        return await axios.get(`${process.env.REACT_APP_BASE_URL}/user/${id}`, {
+          headers: {
+            Authorization: login.token.get,
+          },
+        });
+      };
 
-    getUser(login.user.get.id)
-      .then(res => setUserHistory(res.data.user.history))
-      .catch(err => console.log(err));
-  }, []);
+      getUser(login.user.get.id)
+        .then((res) => setUserHistory(res.data.user.history))
+        .catch((err) => console.log(err));
+    },
+    [login.token.get, login.user.get.id]
+  );
 
   console.log(userHistory);
 

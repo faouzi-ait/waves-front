@@ -1,7 +1,7 @@
 import React, { useEffect, useContext } from "react";
-import { ShoppingCart } from "../../context/ShoppingCartProvider";
-import { Guitards } from "../../context/GuitardsProvider";
 import { UserLogin } from "../../context/LoginProvider";
+import { ShoppingCart } from "../../context/ShoppingCartProvider";
+// import { Guitards } from "../../context/GuitardsProvider";
 
 import Paypal from "../paypal/Paypal";
 
@@ -9,7 +9,7 @@ const Cart = _ => {
   const [login] = useContext(UserLogin);
   const [shoppingCart, methods] = useContext(ShoppingCart);
   const fromStorage = JSON.parse(localStorage.getItem("wave_shopping-cart"));
-  const [guitards] = useContext(Guitards);
+  // const [guitards] = useContext(Guitards);
 
   useEffect(_ => methods.total());
 
