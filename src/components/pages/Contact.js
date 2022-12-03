@@ -17,6 +17,7 @@ const Contact = (_) => {
   const onSubmit = async (data, e) => {
     setIsLoading(true);
     await sendPostRequest(
+      // 'http://localhost:5000/api/v1/contact/message',
       'https://powerful-pink-antelope.cyclic.app/api/v1/contact/message',
       {
         name: data.name,
