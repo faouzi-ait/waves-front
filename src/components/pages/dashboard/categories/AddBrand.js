@@ -27,7 +27,7 @@ const AddBrand = (_) => {
     setIsLoading(true);
 
     await sendAuthenticatedPostRequest(
-      'https://powerful-pink-antelope.cyclic.app/api/v1/products/newbrand',
+      'https://waves-back-mp2xyzete-altairs-projects-b0a4e876.vercel.app/api/v1/products/newbrand',
       { name: data.name },
       { headers: { Authorization: token } }
     )
