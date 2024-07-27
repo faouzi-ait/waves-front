@@ -18,7 +18,7 @@ const Registration = (_) => {
   const onSubmit = async (data, e) => {
     setIsLoading(true);
     await sendPostRequest(
-      'https://powerful-pink-antelope.cyclic.app/api/v1/register',
+      'https://waves-back-mp2xyzete-altairs-projects-b0a4e876.vercel.app/api/v1/register',
       {
         name: data.name,
         surname: data.lastname,
