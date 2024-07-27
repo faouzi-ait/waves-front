@@ -16,7 +16,7 @@ const LoginComponent = () => {
   const onSubmit = async (data) => {
     setIsLoading(true);
 
-    await loginUser('https://waves-back-mp2xyzete-altairs-projects-b0a4e876.vercel.app/api/v1/login', {
+    await loginUser('https://waves-back.onrender.com/api/v1/login', {
       email: data.email,
       password: data.password,
     })
