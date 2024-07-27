@@ -18,7 +18,7 @@ const Registration = (_) => {
   const onSubmit = async (data, e) => {
     setIsLoading(true);
     await sendPostRequest(
-      'https://waves-back-mp2xyzete-altairs-projects-b0a4e876.vercel.app/api/v1/register',
+      'https://waves-back.onrender.com/api/v1/register',
       {
         name: data.name,
         surname: data.lastname,
