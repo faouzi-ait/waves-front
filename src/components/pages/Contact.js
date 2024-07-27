@@ -18,7 +18,7 @@ const Contact = (_) => {
     setIsLoading(true);
     await sendPostRequest(
       // 'http://localhost:5000/api/v1/contact/message',
-      'https://powerful-pink-antelope.cyclic.app/api/v1/contact/message',
+      'https://waves-back-mp2xyzete-altairs-projects-b0a4e876.vercel.app/api/v1/contact/message',
       {
         name: data.name,
         lastname: data.lastname,
