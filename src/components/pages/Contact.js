@@ -23,7 +23,6 @@ const Contact = (_) => {
         name: data.name,
         lastname: data.lastname,
         email: data.email,
-        subject: "WAVE",
         message: data.note,
       }
     )
