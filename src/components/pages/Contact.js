@@ -24,6 +24,7 @@ const Contact = (_) => {
         lastname: data.lastname,
         email: data.email,
         message: data.note,
+        subject: 'FROM WAVE GUITARDS',
       }
     )
       .then((result) => {
